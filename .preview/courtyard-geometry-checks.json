@@ -1,0 +1,40 @@
+{
+  "syntax": "passed",
+  "geometry": "passed",
+  "spawnClear": true,
+  "entrances": [
+    {
+      "entrance": 1,
+      "passageClear": true,
+      "benches": 2
+    },
+    {
+      "entrance": 2,
+      "passageClear": true,
+      "benches": 2
+    },
+    {
+      "entrance": 3,
+      "passageClear": true,
+      "benches": 2
+    },
+    {
+      "entrance": 4,
+      "passageClear": true,
+      "benches": 2
+    },
+    {
+      "entrance": 5,
+      "passageClear": true,
+      "benches": 2
+    }
+  ],
+  "instances": 8630,
+  "instancedTriangles": 307948,
+  "colliders": 399,
+  "footballGoals": 2,
+  "fitnessMachines": 3,
+  "treesOnPlaySurface": 0,
+  "levelEntranceBenches": 10,
+  "graphicsUsed": false
+}

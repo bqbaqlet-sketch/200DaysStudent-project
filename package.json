@@ -1,0 +1,19 @@
+{
+  "name": "200daysstudent",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Браузерная 3D-игра про жизнь студента",
+  "scripts": {
+    "start": "node scripts/serve.cjs",
+    "test": "node .preview/run-checks.cjs",
+    "test:bus": "node .preview/check-bus-route.cjs",
+    "test:college2": "node .preview/check-college2-browser.cjs"
+  },
+  "engines": { "node": ">=20" },
+  "devDependencies": {
+    "@napi-rs/canvas": "1.1.0",
+    "jsdom": "26.1.0",
+    "playwright": "1.56.1",
+    "three": "0.128.0"
+  }
+}

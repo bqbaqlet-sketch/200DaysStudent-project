@@ -1,0 +1,52 @@
+{
+  "syntax": "passed",
+  "entranceDoorIcon": "passed",
+  "tapEntrance": "passed",
+  "stairsAndRightDoor": "passed",
+  "holdToReveal": "passed",
+  "quickTapIgnored": true,
+  "releaseDoesNotChoose": true,
+  "noDialog": true,
+  "inlineIconActions": 2,
+  "pointerCancel": "passed",
+  "keyboardAndAutorepeat": "passed",
+  "closesOutOfRange": true,
+  "knock": {
+    "audioImpacts": 3,
+    "storyEvents": 1,
+    "handOverlay": false
+  },
+  "floorScale": 1.55,
+  "newInterior": true,
+  "normalSizeFurniture": true,
+  "roomsReachable": {
+    "living": true,
+    "bedroom": true,
+    "kitchen": true,
+    "kitchenWindow": true,
+    "bathroom": true,
+    "fridgeFront": true,
+    "freezerFront": true,
+    "clearedHall": true
+  },
+  "kitchenChairsOnFloor": 2,
+  "tableWindowClearance": 1.12,
+  "tableRadiatorOverlap": false,
+  "kitchenWidth": 4.263,
+  "appliancesInKitchen": 2,
+  "applianceOverlaps": false,
+  "plant": {
+    "leavesConnected": true,
+    "furnitureOverlap": false
+  },
+  "bathroomDoor": {
+    "opensAndCloses": true,
+    "animated": true,
+    "blocksWhenClosed": true,
+    "worksBothSides": true,
+    "playerObstructionReopens": true
+  },
+  "enterAndReturn": "passed",
+  "apartmentSceneReused": true,
+  "graphicsUsed": false
+}

@@ -1,0 +1,8 @@
+Tears of Steel (2012), excerpt from 00:36 to 01:58.
+(CC) Blender Foundation | mango.blender.org
+Directed by Ian Hubert.
+Film licensed under Creative Commons Attribution 3.0.
+https://mango.blender.org/sharing/
+https://creativecommons.org/licenses/by/3.0/
+Source: https://download.blender.org/demo/movies/ToS/tears_of_steel_720p.mov
+Adaptation: shortened, resized to 640 pixels, audio converted to mono.

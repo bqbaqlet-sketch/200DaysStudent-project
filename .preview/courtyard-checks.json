@@ -1,0 +1,118 @@
+{
+  "location": "home",
+  "metadata": {
+    "entrances": 5,
+    "floors": 5,
+    "parkingSpaces": 5,
+    "balconies": 40,
+    "footballGoals": 2,
+    "playground": [
+      "slide",
+      "playTower",
+      "swings",
+      "emptySwingFrames",
+      "seesaw",
+      "carousel",
+      "sandbox",
+      "fitnessMachines",
+      "workout",
+      "pergola"
+    ],
+    "courtyardReference": {
+      "entrance": 5,
+      "viewDirection": "+Z",
+      "childrenSide": "+X",
+      "footballSide": "-X"
+    },
+    "fitnessMachines": 3
+  },
+  "spawn": [
+    29.6,
+    1.7,
+    7.8
+  ],
+  "spawnBlocked": false,
+  "colliders": 198,
+  "invalidColliders": [],
+  "invalidTransforms": 0,
+  "renderer": {
+    "calls": 102,
+    "triangles": 208284
+  },
+  "entrances": [
+    {
+      "entrance": 1,
+      "blocked": [
+        0.8
+      ],
+      "interaction": {
+        "id": "intercom-1",
+        "entry": 1,
+        "allowed": false,
+        "action": "enter"
+      }
+    },
+    {
+      "entrance": 2,
+      "blocked": [
+        0.8
+      ],
+      "interaction": {
+        "id": "intercom-2",
+        "entry": 2,
+        "allowed": false,
+        "action": "enter"
+      }
+    },
+    {
+      "entrance": 3,
+      "blocked": [
+        0.8
+      ],
+      "interaction": {
+        "id": "intercom-3",
+        "entry": 3,
+        "allowed": false,
+        "action": "enter"
+      }
+    },
+    {
+      "entrance": 4,
+      "blocked": [
+        0.8
+      ],
+      "interaction": {
+        "id": "intercom-4",
+        "entry": 4,
+        "allowed": true,
+        "action": "enter"
+      }
+    },
+    {
+      "entrance": 5,
+      "blocked": [
+        0.8
+      ],
+      "interaction": {
+        "id": "intercom-5",
+        "entry": 5,
+        "allowed": false,
+        "action": "enter"
+      }
+    }
+  ],
+  "interior": {
+    "location": "entrance4",
+    "floors": 5
+  },
+  "returnLocation": "college",
+  "mobile": {
+    "width": 844,
+    "height": 390,
+    "location": "home",
+    "rotateOverlay": "none"
+  },
+  "errors": [
+    "Failed to load resource: the server responded with a status of 404 (File not found)"
+  ]
+}

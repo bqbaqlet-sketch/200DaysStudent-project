@@ -1,0 +1,32 @@
+<!DOCTYPE html><html lang="ru"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>
+:root{--bg:#0d1f4a;--fg:#fff;--ac:#2f6bff;--sa:env(safe-area-inset-left,0px);--sb:env(safe-area-inset-bottom,0px);--st:env(safe-area-inset-top,0px)}
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;touch-action:none;user-select:none;-webkit-user-select:none}
+/* Canvas фиксирован на весь экран: Safari иногда оставляет старый CSS-размер после поворота */
+body>canvas{position:fixed;inset:0;display:block;width:100%;height:100%;z-index:0}
+.ov{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(13,31,74,.94);text-align:center;padding:16px;z-index:10}
+.ov h1{margin:0 0 8px;font-size:30px}.ov p{margin:4px 0;opacity:.85;max-width:420px}
+#play{margin-top:16px;padding:14px 44px;font-size:20px;font-weight:700;border:0;border-radius:12px;background:var(--ac);color:#fff}
+#rot{display:none;z-index:20}
+#hud{position:fixed;left:calc(12px + var(--sa));top:calc(10px + var(--st));padding:6px 12px;border-radius:8px;background:rgba(13,31,74,.65);font-size:14px;pointer-events:none}
+#jb{position:fixed;width:110px;height:110px;margin:-55px 0 0 -55px;border-radius:50%;border:2px solid rgba(255,255,255,.5);background:rgba(255,255,255,.12);display:none;pointer-events:none}
+#jk{position:absolute;left:35px;top:35px;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.7)}
+.fb{position:fixed;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(16px + var(--sb));z-index:5;min-width:64px;padding:10px 16px;font-size:16px;font-weight:700;border:0;border-radius:12px;background:rgba(47,107,255,.85);color:#fff}
+#upb,#dnb{display:none}#upb{bottom:calc(76px + var(--sb))}#dnb{bottom:calc(136px + var(--sb))}
+#location{top:calc(10px + var(--st));bottom:auto;font-size:14px;background:rgba(13,31,74,.88);border:1px solid rgba(255,255,255,.3);min-height:42px}
+#hud{max-width:calc(100vw - 190px);line-height:1.4;z-index:3}
+button{cursor:pointer}button:focus-visible{outline:3px solid #fff;outline-offset:3px}
+@media(max-height:450px){.fb{padding:9px 13px}#location{font-size:13px}}
+#interaction{display:none;position:fixed;right:calc(28px + env(safe-area-inset-right,0px));bottom:calc(108px + var(--sb));width:76px;height:76px;z-index:6}
+#interaction button{position:relative;width:76px;height:76px;padding:0;border:1px solid #ffffff75;border-radius:50%;background:rgba(96,100,103,.27);color:#fff;box-shadow:0 2px 10px #0003;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);touch-action:none;-webkit-touch-callout:none}
+#interaction button:hover{background:rgba(138,143,146,.4)}#interaction button:active{background:rgba(145,151,154,.52)}
+#interaction button svg{width:37px;height:37px;pointer-events:none;vertical-align:middle;filter:drop-shadow(0 1px 2px #0005)}
+#interaction[data-expanded="true"] #interact{display:none}
+#interaction[data-expanded="true"] #interactionHint{display:none}
+#interact[data-direction="exit"] svg{transform:scaleX(-1)}
+#doorActions[hidden]{display:none}
+#doorActions{position:absolute;right:0;bottom:0;display:flex;gap:16px}
+#doorActions button span{position:absolute;left:50%;top:82px;transform:translateX(-50%);white-space:nowrap;font:500 12px system-ui;color:#fff;text-shadow:0 1px 3px #000;pointer-events:none}
+#interactionHint{position:absolute;top:88px;right:-6px;min-width:150px;max-width:230px;text-align:right;font-size:12px;line-height:1.35;text-shadow:0 1px 3px #000;background:#33383b90;padding:4px 7px;border-radius:7px;pointer-events:none}
+#notice{display:none;position:fixed;left:50%;bottom:calc(26px + var(--sb));transform:translateX(-50%);max-width:65vw;padding:12px 18px;border-radius:10px;background:#252831ed;color:#fff;text-align:center;font-size:15px;z-index:9;pointer-events:none}
+@media(max-height:450px){#interaction{bottom:calc(92px + var(--sb));width:64px;height:64px}#interaction button{width:64px;height:64px}#doorActions{gap:13px}#doorActions button span{top:70px;font-size:11px}#interactionHint{top:76px;font-size:11px}}
+body{background:url('./дверь-квартиры-для-превью.png') center/cover no-repeat #444}#interaction{display:block}</style><div id="hud">Подъезд 4 · 2 этаж</div><div id="interaction"><button id="interact" aria-label="Войти в подъезд" aria-describedby="interactionHint" aria-controls="doorActions" aria-expanded="false"><svg class="interactionIcon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 5h13v23H14M14 5l7 4v19l-7-3V5M3 16h12m-4-4 4 4-4 4"/></svg></button><div id="doorActions" role="group" aria-label="Действия у двери квартиры" hidden><button id="knockDoor" aria-label="Постучать" title="Постучать (1)"><svg class="" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M26 5v23M7 24l-2-5v-6a2 2 0 0 1 4 0v-3a2 2 0 0 1 4 0v2a2 2 0 0 1 4 0v2a2 2 0 0 1 4 0v6l-3 5H7Z"/><path d="m21 6 2-2m0 7h2m-3 14 2 2"/></svg><span>Постучать</span></button><button id="enterApartment" aria-label="Зайти" title="Зайти (2)"><svg class="" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 5h13v23H14M14 5l7 4v19l-7-3V5M3 16h12m-4-4 4 4-4 4"/></svg><span>Зайти</span></button></div><div id="interactionHint">Нажмите / E</div></div><div id="notice" role="status" aria-live="polite"></div><script>const expanded=new URLSearchParams(location.search).get('state')==='choices';document.getElementById('interaction').dataset.expanded=String(expanded);document.getElementById('doorActions').hidden=!expanded;document.getElementById('interactionHint').textContent='Удерживайте / E';document.getElementById('interact').setAttribute('aria-expanded',String(expanded));</script></html>

@@ -1,0 +1,146 @@
+{
+  "revision": "128",
+  "physicallyCorrectLights": false,
+  "toneMapping": 0,
+  "lights": [
+    {
+      "type": "HemisphereLight",
+      "intensity": 0.8
+    },
+    {
+      "type": "AmbientLight",
+      "intensity": 0.08
+    },
+    {
+      "type": "DirectionalLight",
+      "intensity": 0.28
+    },
+    {
+      "type": "PointLight",
+      "intensity": 0.2
+    },
+    {
+      "type": "PointLight",
+      "intensity": 0.19
+    },
+    {
+      "type": "PointLight",
+      "intensity": 0.19
+    },
+    {
+      "type": "PointLight",
+      "intensity": 0.16
+    },
+    {
+      "type": "PointLight",
+      "intensity": 0.17
+    },
+    {
+      "type": "PointLight",
+      "intensity": 0.16
+    },
+    {
+      "type": "PointLight",
+      "intensity": 0.16
+    },
+    {
+      "type": "PointLight",
+      "intensity": 0.19
+    },
+    {
+      "type": "PointLight",
+      "intensity": 0.17
+    },
+    {
+      "type": "PointLight",
+      "intensity": 0.13
+    },
+    {
+      "type": "PointLight",
+      "intensity": 0.15
+    },
+    {
+      "type": "PointLight",
+      "intensity": 0.15
+    },
+    {
+      "type": "PointLight",
+      "intensity": 0.15
+    },
+    {
+      "type": "PointLight",
+      "intensity": 0.15
+    },
+    {
+      "type": "PointLight",
+      "intensity": 0.15
+    },
+    {
+      "type": "PointLight",
+      "intensity": 0.16
+    },
+    {
+      "type": "PointLight",
+      "intensity": 0.11
+    },
+    {
+      "type": "PointLight",
+      "intensity": 0.11
+    },
+    {
+      "type": "PointLight",
+      "intensity": 0.11
+    },
+    {
+      "type": "PointLight",
+      "intensity": 0.11
+    },
+    {
+      "type": "PointLight",
+      "intensity": 0.11
+    }
+  ],
+  "renderCalls": 284,
+  "shots": [
+    {
+      "name": "корпус-2-актовый-зал",
+      "whiteFraction": 0.01240212912087912,
+      "averageBrightness": 112.26047905231528
+    },
+    {
+      "name": "корпус-2-сцена-в-зал",
+      "whiteFraction": 0.011320398351648352,
+      "averageBrightness": 135.27237522889573
+    },
+    {
+      "name": "корпус-2-зал-лестница",
+      "whiteFraction": 0.0008739697802197802,
+      "averageBrightness": 145.29051339288787
+    },
+    {
+      "name": "корпус-2-зал-шторы",
+      "whiteFraction": 0.011488667582417582,
+      "averageBrightness": 121.97464228481356
+    },
+    {
+      "name": "корпус-2-зал-подъём",
+      "whiteFraction": 0.002757554945054945,
+      "averageBrightness": 186.83813930848095
+    },
+    {
+      "name": "корпус-2-зал-кресла",
+      "whiteFraction": 0.0029876373626373624,
+      "averageBrightness": 106.75398466120689
+    }
+  ],
+  "navigation": {
+    "samples": 1490,
+    "endHall": "Корпус 2 · Холл с кубками",
+    "mainCorridor": "Корпус 2 · Коридор первого этажа"
+  },
+  "assemblyHall": {
+    "samples": 6158,
+    "highest": 7.664,
+    "finalFeet": 0
+  }
+}
