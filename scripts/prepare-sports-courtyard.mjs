@@ -1,0 +1,10 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import {fileURLToPath} from 'node:url';
+const project=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+const main=path.join(project,fs.readdirSync(project).find(f=>f!=='index.html'&&f.endsWith('.html'))),source=fs.readFileSync(main,'utf8');
+const begin='// BEGIN COLLEGE_SPORTS_COURTYARD',end='// END COLLEGE_SPORTS_COURTYARD',start=source.indexOf(begin),finish=source.indexOf(end,start);
+if(start<0||finish<0)throw Error('Sports courtyard block is missing; do not replace unrelated legacy geometry');
+const nl=source.includes('\r\n')?'\r\n':'\n',block=fs.readFileSync(path.join(project,'.preview/college-sports-courtyard.js'),'utf8').trim().replace(/\r?\n/g,nl);
+fs.writeFileSync(main,source.slice(0,start)+block+source.slice(finish+end.length));
+console.log('Sports courtyard updated');

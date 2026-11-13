@@ -1,0 +1,22 @@
+{
+  "vertices": 29092,
+  "triangles": 36000,
+  "sourceTriangles": 1000000,
+  "joints": 52,
+  "clips": [
+    {
+      "name": "NVP_Stance",
+      "source": "human_000000",
+      "duration": 8.866666793823242
+    },
+    {
+      "name": "NVP_Walk_Source",
+      "source": "human_000089",
+      "duration": 1.0333333015441895
+    }
+  ],
+  "stride": 1.8185333590954542,
+  "simplificationError": 0.001889514271169901,
+  "maxDiscardedWeight": 0.1052246056497097,
+  "averageDiscardedWeight": 0.0006140577652195252
+}

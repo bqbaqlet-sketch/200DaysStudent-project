@@ -18,7 +18,7 @@ async function main() {
   const errors = [];
   page.on('pageerror', error => errors.push(error.message));
   await page.addInitScript(() => { window.requestAnimationFrame = () => 0; });
-  const file = fs.readdirSync('.').find(name => name.endsWith('.html'));
+  const file = fs.readdirSync('.').find(name => name !== 'index.html' && name.endsWith('.html'));
   await page.goto(pathToFileURL(path.resolve(file)).href, { waitUntil: 'load', timeout: 60000 });
   await page.waitForFunction("typeof THREE !== 'undefined' && typeof updateInteraction === 'function'");
   await page.evaluate(`document.getElementById('start').style.display='none';

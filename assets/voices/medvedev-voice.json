@@ -1,0 +1,18 @@
+{
+  "text": "Быстрее, когда уже пары начались?",
+  "language": "Russian",
+  "prompt": "A native Russian speaking elderly man, approximately 70 years old, a college security guard. Low, mature masculine baritone with a slightly gravelly and weathered chest resonance, audible age, but clear natural Russian diction. Mildly grumbling, impatient and authoritative as he urges a late student to hurry, without shouting. Conversational, believable acting, brisk first word, a short pause after it, then an incredulous questioning intonation. Dry clean studio recording, no music, no effects. Read only the supplied Russian sentence, no extra words.",
+  "event": "68771c0359fb47e29738d6072ad2f7ef",
+  "id": "medvedev-ru",
+  "engine": "Qwen3-TTS",
+  "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+  "generated": "2026-11-12",
+  "referenceAudio": "medvedev-reference.wav",
+  "referenceText": "Быстрее, когда уже пары начались?",
+  "source": "https://huggingface.co/spaces/Qwen/Qwen3-TTS",
+  "postprocess": "Trimmed edge silence, 12 ms edge fades, -1 dB headroom; no pitch shift",
+  "duration": 2.536875,
+  "sampleRate": 24000,
+  "referenceSha256": "79af06631abbba3b852d5e31bdd8cc5e8c233356b9639b3eaff826898794a19f",
+  "sourceAudio": "medvedev-source.wav"
+}

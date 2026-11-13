@@ -1,0 +1,10 @@
+{
+  "source": "source/base.obj",
+  "sourceTriangles": 1000000,
+  "triangles": 36000,
+  "vertices": 27643,
+  "joints": 15,
+  "textureSize": 1024,
+  "simplificationError": 0.0017937198281288147,
+  "packedGeometryBytes": 796508
+}

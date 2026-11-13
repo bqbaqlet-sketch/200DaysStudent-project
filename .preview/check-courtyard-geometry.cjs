@@ -3,7 +3,7 @@ const vm = require('node:vm');
 const path = require('node:path');
 const assert = require('node:assert/strict');
 const THREE = require('three');
-const file = fs.readdirSync('.').find(f => f.endsWith('.html'));
+const file = fs.readdirSync('.').find(f => f !== 'index.html' && f.endsWith('.html'));
 const html = fs.readFileSync(file, 'utf8');
 new vm.Script(html.match(/<script>([\s\S]*?)<\/script>/)[1]);
 // Canvas drawing is skipped: this checks the actual Three.js geometry without a GPU or browser.

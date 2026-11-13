@@ -1,7 +1,7 @@
 const fs=require('node:fs'),path=require('node:path'),vm=require('node:vm'),assert=require('node:assert/strict');
 const dep = name => require(name);
 const {JSDOM}=dep('jsdom'),realThree=dep('three');
-const file=fs.readdirSync('.').find(f=>f.endsWith('.html')),html=fs.readFileSync(file,'utf8');
+const file=fs.readdirSync('.').find(f => f !== 'index.html' && f.endsWith('.html')),html=fs.readFileSync(file,'utf8');
 const script=html.match(/<script>([\s\S]*?)<\/script>/)[1];
 new vm.Script(script);
 const dom=new JSDOM(html.replace(/<script[\s\S]*?<\/script>/g,''),{runScripts:'outside-only',pretendToBeVisual:true});

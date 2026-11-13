@@ -1,0 +1,10 @@
+{
+  "source": "source/base_basic_pbr.glb",
+  "originalTriangles": 1000000,
+  "triangles": 36000,
+  "vertices": 26401,
+  "skeletonJoints": 17,
+  "textureSize": 1024,
+  "simplificationError": 0.0017938977107405663,
+  "packedGeometryBytes": 770424
+}

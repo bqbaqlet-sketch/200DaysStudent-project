@@ -1,6 +1,6 @@
 const http = require('node:http'), fs = require('node:fs'), path = require('node:path');
 const root = path.resolve(__dirname, '..');
-const game = fs.readdirSync(root).find(name => name.endsWith('.html'));
+const game = fs.readdirSync(root).find(name => name !== 'index.html' && name.endsWith('.html'));
 if (!game) throw Error('Game HTML is missing');
 const port = Number(process.env.PORT || 8000);
 if (!Number.isInteger(port) || port < 1 || port > 65535) throw Error('Invalid PORT');

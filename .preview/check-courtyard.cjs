@@ -13,7 +13,7 @@ const { chromium } = require('playwright');
   const errors = [];
   page.on('pageerror', e => errors.push(e.message));
   page.on('console', m => { if (m.type() === 'error' && !m.location().url.endsWith('/favicon.ico')) errors.push(m.text()); });
-  const file = fs.readdirSync(process.cwd()).find(f => f.endsWith('.html'));
+  const file = fs.readdirSync(process.cwd()).find(f => f !== 'index.html' && f.endsWith('.html'));
   await page.goto(pathToFileURL(path.join(process.cwd(), file)).href);
   await page.waitForFunction(() => typeof THREE !== 'undefined' && typeof switchLocation === 'function');
   await page.click('#play');

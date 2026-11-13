@@ -2,7 +2,7 @@
 const fs=require('node:fs'),path=require('node:path'),vm=require('node:vm');
 const dep = name => require(name);
 const THREE=dep('three'),{createCanvas,ImageData}=dep('@napi-rs/canvas');
-const file=fs.readdirSync('.').find(f=>f.endsWith('.html')),source=fs.readFileSync(file,'utf8');
+const file=fs.readdirSync('.').find(f => f !== 'index.html' && f.endsWith('.html')),source=fs.readFileSync(file,'utf8');
 const entrancePreview=process.argv.includes('--entrance');
 const homePreview=process.argv.includes('--benches'),yardPreview=process.argv.includes('--yard');
 const bathroomPreview=process.argv.includes('--bath-closed')||process.argv.includes('--bath-open');

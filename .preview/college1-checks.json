@@ -49,8 +49,8 @@
     "finalGroundDeskFront": true,
     "finalGroundEnd": true
   },
-  "visibleMeshes": 2059,
-  "batchedParts": 16384,
+  "visibleMeshes": 2093,
+  "batchedParts": 16355,
   "finiteGeometry": true,
   "exitReturnsToSameDoor": true,
   "sceneReused": true,

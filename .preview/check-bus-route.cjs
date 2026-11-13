@@ -1,7 +1,7 @@
 const fs=require('fs'),path=require('path'),assert=require('assert/strict'),{pathToFileURL}=require('url');
 const {chromium}=require('playwright');
 const project=path.resolve(__dirname,'..'),output=path.join(__dirname,'bus-qa');fs.mkdirSync(output,{recursive:true});
-const source=process.argv[2]||path.join(project,fs.readdirSync(project).find(f=>f.endsWith('.html')));
+const source=process.argv[2]||path.join(project,fs.readdirSync(project).find(f => f !== 'index.html' && f.endsWith('.html')));
 (async()=>{const b=await chromium.launch({...require('./test-runtime.cjs').browserOptions(),headless:true,args:['--use-angle=swiftshader','--enable-unsafe-swiftshader','--disable-gpu-sandbox']});try{
  const page=await b.newPage({viewport:{width:1360,height:800}}),errors=[];page.on('pageerror',e=>errors.push(e.message));
  await page.addInitScript(()=>{window.requestAnimationFrame=()=>0;Element.prototype.requestFullscreen=()=>Promise.reject()});

@@ -1,0 +1,30 @@
+{
+  "vertices": 39143,
+  "triangles": 36000,
+  "sourceTriangles": 1000000,
+  "joints": 52,
+  "clips": [
+    {
+      "name": "Medvedev_Stance",
+      "source": "human_000000",
+      "duration": 8.866666793823242
+    },
+    {
+      "name": "Medvedev_Walk_Source",
+      "source": "human_000089",
+      "duration": 1.0333333015441895
+    },
+    {
+      "name": "Medvedev_Idle",
+      "source": "human_000093",
+      "duration": 8.333333015441895
+    }
+  ],
+  "stride": 1.7616222171345726,
+  "simplificationError": 0.002572743920609355,
+  "maxDiscardedWeight": 0.1374847386032343,
+  "averageDiscardedWeight": 0.0008417561397917578,
+  "eyeTriangles": 3456,
+  "totalTriangles": 39456,
+  "eyeRevision": "medvedev-eyes-1"
+}
