@@ -1,0 +1,13 @@
+{
+  "source": "Procedurally composed fingerpicked guitar; Karplus-Strong string synthesis",
+  "duration": 24.615375,
+  "sampleRate": 24000,
+  "channels": 1,
+  "tempo": 78,
+  "progression": "Am F C G / Am F G Am",
+  "peak": 0.78,
+  "rms": 0.17322718999753534,
+  "loop": true,
+  "picture": "mom-screen.jpg",
+  "pictureSource": "User attachment codex-clipboard-7fa644b9-8f6f-45fe-8fbb-b850fb6fc35e.jpg"
+}

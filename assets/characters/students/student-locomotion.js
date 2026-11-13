@@ -48,7 +48,8 @@ function createStudentLocomotion({hips,body,head,limbs,bendLimb,placeHands,stand
 const STUDENT_WALK_STYLES=Object.freeze({
  'student-108':{stride:1.36,phase:.0,armSwing:.86,bodySway:.92},
  'sanya-108':{stride:1.22,phase:.19,armSwing:.95,bodySway:1.02},
- 'alexey-108':{stride:1.42,phase:.37,armSwing:.80,bodySway:.88}
+ 'alexey-108':{stride:1.42,phase:.37,armSwing:.80,bodySway:.88},
+ 'misha-108':{stride:1.38,phase:.12,armSwing:.84,bodySway:.94}
 });
 function buildStudentCharacter(asset,id,height){
  const style=STUDENT_WALK_STYLES[id];

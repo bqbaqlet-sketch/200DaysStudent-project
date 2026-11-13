@@ -127,7 +127,7 @@ function createMedvedevRoutine(post){
  function pauseDialogue(){audio?.pause();audio=null;playingUntil=0;removeRetry();}
  function playLine(ms,player){
   pauseDialogue();lineCount++;lastLineMs=ms;playingUntil=ms+voice.ms;
-  showNotice(MEDVEDEV.name+': «'+voice.text+'»',voice.ms+650);
+  showNotice(voice.text,voice.ms+650);
   audio=new Audio(voice.audio);audio.volume=Math.min(1,Math.max(.35,1-Math.hypot(player.x-model.root.position.x,player.z-model.root.position.z)/12));
   const spoken=audio;
   spoken.play().catch(()=>{

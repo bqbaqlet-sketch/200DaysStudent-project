@@ -1,6 +1,7 @@
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
 const {pathToFileURL}=require('node:url'),{chromium}=require('playwright');
 const project=path.resolve(__dirname,'..'),out=path.join(__dirname,'medvedev-qa');fs.mkdirSync(out,{recursive:true});
+const expectedVoice=require('../assets/voices/dialogue.json').characters.medvedev;
 (async()=>{
  const browser=await chromium.launch({...require('./test-runtime.cjs').browserOptions(),headless:true,args:['--use-angle=swiftshader','--enable-unsafe-swiftshader','--disable-gpu-sandbox']});
  try{
@@ -43,7 +44,7 @@ const project=path.resolve(__dirname,'..'),out=path.join(__dirname,'medvedev-qa'
    gameTime.set(2,9,0);g.update(clockElapsedMs,near);const nextDay=plays;
    switchLocation('home',{fresh:true});const stoppedOnExit=pauses>0;gameTime.set(2,23,30);switchLocation('college');const reentryInside=g.state.phase==='inside';
    HTMLMediaElement.prototype.play=realPlay;HTMLMediaElement.prototype.pause=realPause;
-   // Decode the actual embedded recording in the browser.
+  // Decode and play the actual embedded recording in the browser.
    const audioBytes=Uint8Array.from(atob(medvedevDialogue.hurry.audio.split(',')[1]),c=>c.charCodeAt(0));
    const context=new AudioContext(),decoded=await context.decodeAudioData(audioBytes.buffer),samples=decoded.getChannelData(0);let peak=0;for(const x of samples)peak=Math.max(peak,Math.abs(x));await context.close();
    const recording=new Audio(medvedevDialogue.hurry.audio);await recording.play();const playback=!recording.paused;recording.pause();
@@ -61,7 +62,7 @@ const project=path.resolve(__dirname,'..'),out=path.join(__dirname,'medvedev-qa'
   for(const p of report.paths){assert.equal(p.clearDoor,true,'Guard must cross an open doorway');assert.ok(p.maxSpeed<2.2);assert.ok(p.trace.every(t=>t.position.every(Number.isFinite)));}
   assert.equal(report.waiting.waited,true);assert.ok(report.waiting.delay>0);assert.equal(report.waiting.resumed,true);
   assert.deepEqual(Object.values(report.dialogue).slice(0,6),[0,1,1,2,2,3]);assert.equal(report.dialogue.stoppedOnExit,true);assert.equal(report.dialogue.reentryInside,true);
-  assert.equal(report.dialogue.text,'Быстрее, когда уже пары начались?');assert.equal(report.dialogue.voiceId,'medvedev-ru');
+  assert.equal(report.dialogue.text,expectedVoice.lines.hurry.text);assert.equal(report.dialogue.voiceId,expectedVoice.profile.id);
   assert.ok(report.audio.seconds>1.5&&report.audio.seconds<7);assert.ok(report.audio.peak>.3&&report.audio.peak<.99);assert.equal(report.audio.playback,true);
   assert.ok(report.outsideBounds.flat().every(Number.isFinite));assert.ok(report.outsideBounds[0][1]>-.10&&report.outsideBounds[0][1]<.10);assert.ok(report.outsideBounds[1][1]>1.65&&report.outsideBounds[1][1]<2.1);
   assert.deepEqual(report.collision,{guard:true,lane:false,booth:true,barrier:true});

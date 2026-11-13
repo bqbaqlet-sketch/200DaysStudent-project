@@ -5,6 +5,7 @@ import {MeshoptSimplifier} from 'meshoptimizer';
 import {createCanvas,loadImage} from '@napi-rs/canvas';
 import * as THREE from 'three';
 import {buildMedvedevEyes} from '../assets/characters/medvedev/medvedev-eyes.mjs';
+import {buildCharacterDialogue} from './character-dialogue.mjs';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const out=path.join(root,'assets/characters/medvedev');
 const eyeProfile=JSON.parse(fs.readFileSync(path.join(out,'eye-profile.json'),'utf8'));
@@ -99,9 +100,7 @@ fs.writeFileSync(path.join(out,'preparation.json'),JSON.stringify(metadata,null,
 const runtimePath=path.join(out,'medvedev-animation.js');
 if(fs.existsSync(runtimePath)){
  const main=path.join(root,fs.readdirSync(root).find(f => f !== 'index.html' && f.endsWith('.html'))),original=fs.readFileSync(main,'utf8'),begin='// BEGIN MEDVEDEV_CHARACTER',end='// END MEDVEDEV_CHARACTER',newline=original.includes('\r\n')?'\r\n':'\n';
- const voiceFile=fs.readFileSync(path.join(root,'assets/voices/medvedev-hurry.wav'));
- const voiceInfo=JSON.parse(fs.readFileSync(path.join(root,'assets/voices/medvedev-voice.json'),'utf8'));
- const dialogue={hurry:{text:voiceInfo.referenceText,ms:Math.ceil(voiceInfo.duration*1000),audio:'data:audio/wav;base64,'+voiceFile.toString('base64')}};
+ const dialogue=buildCharacterDialogue(root,'medvedev');
  const block=(begin+'\nconst medvedevAsset='+JSON.stringify(asset)+';\nconst medvedevDialogue='+JSON.stringify(dialogue)+';\n'+fs.readFileSync(path.join(out,'medvedev-eyes.mjs'),'utf8').replace('export function','function')+'\n'+fs.readFileSync(runtimePath,'utf8')+'\n'+end+'\n').replace(/\r?\n/g,newline);
  let updated;if(original.includes(begin)){const start=original.indexOf(begin),finish=original.indexOf(end,start);if(finish<0)throw Error('Missing block end');updated=original.slice(0,start)+block+original.slice(finish+end.length).replace(/^\r?\n/,'');}
  else{const anchor='function buildCollegeEntranceInterior(){';if(original.split(anchor).length!==2)throw Error('Missing unique college builder');updated=original.replace(anchor,block+newline+anchor);}

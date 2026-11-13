@@ -21,7 +21,20 @@
     "export:students": "node .preview/student-media.cjs --export",
     "preview:students": "node .preview/student-media.cjs --video",
     "prepare:sports": "node scripts/prepare-sports-courtyard.mjs",
-    "test:sports": "node .preview/check-college-sports.cjs"
+    "test:sports": "node .preview/check-college-sports.cjs",
+    "prepare:misha": "node scripts/prepare-misha.mjs",
+    "test:misha": "node .preview/check-misha108.cjs",
+    "export:misha": "node .preview/student-media.cjs --export --misha",
+    "prepare:room212": "node scripts/prepare-room212.mjs",
+    "test:room212": "node .preview/check-room212.cjs",
+    "prepare:player": "node scripts/prepare-player.mjs && node scripts/fit-player-eyes.cjs && node scripts/prepare-player.mjs",
+    "test:player": "node .preview/check-player.cjs",
+    "export:player": "node .preview/check-player.cjs --export",
+    "prepare:voices": "node scripts/prepare-voices.mjs",
+    "test:voices": "node .preview/check-voices.cjs",
+    "prepare:mom": "node scripts/fit-mom-eyes.cjs && node scripts/prepare-mom.mjs",
+    "prepare:mom-media": "node scripts/prepare-mom-media.cjs",
+    "test:mom": "node .preview/check-mom.cjs"
   },
   "engines": {
     "node": ">=20"

@@ -1,0 +1,38 @@
+{
+  "engine": "ElevenLabs",
+  "id": "larisa-ru",
+  "voiceName": "Natalia - Gentle and Soothing",
+  "language": "ru-RU",
+  "referenceAudio": "assets/voices/larisa-first.mp3",
+  "referenceText": "Кто там стучит?",
+  "description": "Пользовательские записи ElevenLabs, голос Natalia - Gentle and Soothing",
+  "updated": "2026-11-13",
+  "duration": 1.567313,
+  "referenceSha256": "ebec5ccd502373a578789c98a9620bcf336bc84387e67f1844a7988a1120df10",
+  "sourceAudio": "larisa-first.mp3",
+  "sourceFile": "ElevenLabs_2026-11-13T10_30_43_Natalia - Gentle and Soothing_pvc_s50_sim75_v4.mp3",
+  "manifest": "dialogue.json",
+  "lines": {
+    "first": {
+      "file": "larisa-first.mp3",
+      "text": "Кто там стучит?",
+      "duration": 1.567313,
+      "sha256": "ebec5ccd502373a578789c98a9620bcf336bc84387e67f1844a7988a1120df10",
+      "sourceFile": "ElevenLabs_2026-11-13T10_30_43_Natalia - Gentle and Soothing_pvc_s50_sim75_v4.mp3"
+    },
+    "second": {
+      "file": "larisa-second.mp3",
+      "text": "Ну же, заходи давай!",
+      "duration": 1.802438,
+      "sha256": "906e92bda15b8d0353ae91bff5ab218d86a0525bf680e24e733aa0d18d65edc9",
+      "sourceFile": "ElevenLabs_2026-11-13T10_31_36_Natalia - Gentle and Soothing_pvc_s50_sim75_v4.mp3"
+    },
+    "eject": {
+      "file": "larisa-eject.mp3",
+      "text": "Ты что, совсем избалованный?",
+      "duration": 2.50775,
+      "sha256": "87892d92fe194280c678b02893a32366cbf7a07319cd175610be3bdf4f02f38c",
+      "sourceFile": "ElevenLabs_2026-11-13T10_32_54_Natalia - Gentle and Soothing_pvc_s100_sim100_cs100_v4.mp3"
+    }
+  }
+}

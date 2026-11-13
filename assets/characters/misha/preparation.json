@@ -1,0 +1,12 @@
+{
+  "source": "source/base_basic_pbr.glb",
+  "sourceArchive": "5ea92504-7bae-4a48-8d7e-69c99798e210.zip",
+  "sourceSha256": "d4a5c27ace852d68f9d8b2ae19cf47d2e3b9bba00e0ecaddeafc8bb657ab78a0",
+  "sourceTriangles": 1000000,
+  "triangles": 36000,
+  "vertices": 32484,
+  "joints": 15,
+  "textureSize": 1024,
+  "simplificationError": 0.002013163408264518,
+  "packedGeometryBytes": 898164
+}

@@ -1,3 +1,10 @@
+Current television media:
+Picture: user attachment codex-clipboard-7fa644b9-8f6f-45fe-8fbb-b850fb6fc35e.jpg, unchanged.
+Audio: original instrumental guitar loop composed procedurally for this game.
+Generator: scripts/prepare-mom-media.cjs (Karplus-Strong string synthesis).
+This is not the audio of any video pictured in the screenshot.
+
+Historical television film, no longer embedded or played:
 Tears of Steel (2012), excerpt from 00:36 to 01:58.
 (CC) Blender Foundation | mango.blender.org
 Directed by Ian Hubert.

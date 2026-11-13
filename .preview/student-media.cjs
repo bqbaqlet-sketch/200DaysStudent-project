@@ -8,15 +8,16 @@ const project=path.resolve(__dirname,'..'),out=path.join(__dirname,'students108-
   await page.route('https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js',r=>r.fulfill({path:require.resolve('three/build/three.min.js'),contentType:'application/javascript'}));
   await page.addInitScript(()=>{window.requestAnimationFrame=()=>0;Element.prototype.requestFullscreen=()=>Promise.reject()});
   await page.goto(pathToFileURL(path.join(project,fs.readdirSync(project).find(f=>f!=='index.html'&&f.endsWith('.html')))).href,{waitUntil:'load',timeout:60000});await page.locator('#play').click();
-  await page.evaluate(async()=>{
-   const definitions=[['Дима',student108Asset,'student-108',.884,1.32],['Саня',sanya108Asset,'sanya-108',.775,1.28],['Алексей',alexey108Asset,'alexey-108',.986,1.34]];
-   window.studentStage={models:definitions.map(([name,asset,id,height,speed])=>({name,id,speed,model:buildStudentCharacter(asset,id,height)}))};
+  const modelCount=await page.evaluate(async mishaOnly=>{
+   const definitions=[['Дима',student108Asset,'student-108',.884,1.32],['Саня',sanya108Asset,'sanya-108',.775,1.28],['Алексей',alexey108Asset,'alexey-108',.986,1.34],['Миша',misha108Asset,'misha-108',.984,1.30]];
+   window.studentStage={models:definitions.filter(([, ,id])=>!mishaOnly||id==='misha-108').map(([name,asset,id,height,speed])=>({name,id,speed,model:buildStudentCharacter(asset,id,height)}))};
    for(const s of studentStage.models){s.model.root.scale.x=1;s.model.root.userData.characterName=s.name;for(const key of ['map','normalMap','roughnessMap'])await s.model.mesh.material[key].image.decode();}
-  });
+   return studentStage.models.length;
+  },process.argv.includes('--misha'));
   const exports=[];
   if(process.argv.includes('--export')){
    await page.addScriptTag({path:path.join(project,'node_modules/three/examples/js/exporters/GLTFExporter.js')});
-   for(let index=0;index<3;index++){
+   for(let index=0;index<modelCount;index++){
     const result=await page.evaluate(async index=>{
      const s=studentStage.models[index],m=s.model,root=m.root,joints=Object.values(m.names),ease=characterEase;
      root.position.set(0,0,0);root.quaternion.identity();root.scale.set(1,1,1);
@@ -44,7 +45,8 @@ const project=path.resolve(__dirname,'..'),out=path.join(__dirname,'students108-
      const bytes=new Uint8Array(result);let data='';for(let i=0;i<bytes.length;i+=32768)data+=String.fromCharCode(...bytes.subarray(i,i+32768));
      return {id:s.id,name:s.name,data:btoa(data),clips:clips.map(c=>({name:c.name,duration:c.duration,tracks:c.tracks.length}))};
     },index);
-    const destination=index===2?path.join(project,'assets/characters/alexey/alexey-animated.glb'):path.join(project,'assets/characters/students',index===0?'dima-animated.glb':'sanya-animated.glb');
+    const destinations={'student-108':'students/dima-animated.glb','sanya-108':'students/sanya-animated.glb','alexey-108':'alexey/alexey-animated.glb','misha-108':'misha/misha-animated.glb'};
+    const destination=path.join(project,'assets/characters',destinations[result.id]);
     fs.writeFileSync(destination,Buffer.from(result.data,'base64'));exports.push({id:result.id,file:path.relative(project,destination),bytes:fs.statSync(destination).size,clips:result.clips});console.log('Exported '+result.name);
    }
    await page.addScriptTag({path:path.join(project,'node_modules/three/examples/js/loaders/GLTFLoader.js')});
@@ -62,14 +64,14 @@ const project=path.resolve(__dirname,'..'),out=path.join(__dirname,'students108-
    const floor=new THREE.Mesh(new THREE.PlaneGeometry(60,60),new THREE.MeshPhongMaterial({color:0x87999d}));floor.rotation.x=-Math.PI/2;floor.position.y=-.038;scene.add(floor);const grid=new THREE.GridHelper(60,60,0x627b82,0x9caaad);grid.position.y=-.036;scene.add(grid);
    const camera=new THREE.PerspectiveCamera(39,1100/700,.05,100);R.setSize(1100,700);R.setPixelRatio(1);
    studentStage.models.forEach((s,i)=>{
-    s.model.root.position.set((i-1)*1.55,0,-3);scene.add(s.model.root);
+    s.model.root.position.set((i-(studentStage.models.length-1)/2)*1.40,0,-3);scene.add(s.model.root);
     s.shadow=createClassroomCharacterShadow(scene);s.shadow.visible=true;
     const cv=document.createElement('canvas');cv.width=512;cv.height=96;const g=cv.getContext('2d');g.fillStyle='#193e50';g.font='600 48px Arial';g.textAlign='center';g.textBaseline='middle';g.fillText(s.name,256,48);
     s.label=new THREE.Mesh(new THREE.PlaneGeometry(.9,.17),new THREE.MeshBasicMaterial({map:new THREE.CanvasTexture(cv),transparent:true,depthWrite:false}));scene.add(s.label);
    });
    studentStage.render=t=>{
     const center=-3+t*1.31;camera.position.set(3.4,2.35,center+6.6);camera.lookAt(0,1.05,center);
-    studentStage.models.forEach((s,i)=>{s.model.root.position.z=-3+t*s.speed;s.model.pose({height:s.model.standingHeight,time:t,gait:t*s.speed/s.model.cycleLength,walking:1});s.shadow.position.set(s.model.root.position.x,-.034,s.model.root.position.z);s.label.position.set((i-1)*1.55,i===2?2.10:1.95,s.model.root.position.z);s.label.quaternion.copy(camera.quaternion);});
+    studentStage.models.forEach((s,i)=>{s.model.root.position.z=-3+t*s.speed;s.model.pose({height:s.model.standingHeight,time:t,gait:t*s.speed/s.model.cycleLength,walking:1});s.shadow.position.set(s.model.root.position.x,-.034,s.model.root.position.z);s.label.position.set(s.model.root.position.x,i>=2?2.10:1.95,s.model.root.position.z);s.label.quaternion.copy(camera.quaternion);});
     R.render(scene,camera);
    };
    studentStage.render(.4);for(const child of document.body.children)if(child!==R.domElement)child.style.visibility='hidden';
