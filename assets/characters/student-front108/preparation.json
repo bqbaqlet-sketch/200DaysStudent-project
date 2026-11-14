@@ -1,0 +1,20 @@
+{
+  "characterId": "student-front-108",
+  "characterName": "Илья",
+  "source": "source/original.glb",
+  "sourceFile": "d40127a3c28c9dcf48ed6df7d8dda67c.glb",
+  "sourceSha256": "85d61906285e7f8b15543959200266c6e7f4f8cd73ad42a6db15fd7d5e2d6406",
+  "sourceTriangles": 1498512,
+  "triangles": 48000,
+  "vertices": 34322,
+  "joints": 15,
+  "height": 1.82,
+  "sourceTransformApplied": true,
+  "textureSizes": {
+    "color": 1536,
+    "normal": 1024,
+    "surface": 1024
+  },
+  "simplificationError": 0.0015820570988580585,
+  "packedGeometryBytes": 1008764
+}

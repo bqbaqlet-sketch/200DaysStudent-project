@@ -34,7 +34,22 @@
     "test:voices": "node .preview/check-voices.cjs",
     "prepare:mom": "node scripts/fit-mom-eyes.cjs && node scripts/prepare-mom.mjs",
     "prepare:mom-media": "node scripts/prepare-mom-media.cjs",
-    "test:mom": "node .preview/check-mom.cjs"
+    "test:mom": "node .preview/check-mom.cjs",
+    "test:wardrobe": "node .preview/check-wardrobe.cjs",
+    "prepare:uniform": "node scripts/prepare-player-uniform.mjs && node scripts/sync-player-runtime.mjs",
+    "test:outfits": "node .preview/check-outfits.cjs",
+    "export:uniform": "node .preview/export-player-uniform.cjs",
+    "prepare:entrance": "node scripts/prepare-entrance.mjs",
+    "test:entrance": "node .preview/check-entrance.cjs",
+    "prepare:playground": "node scripts/prepare-playground.mjs",
+    "test:playground": "node .preview/check-playground.cjs",
+    "prepare:front-student": "node scripts/prepare-front-student.mjs && node scripts/fit-front-student-eyes.cjs && node scripts/sync-front-student.mjs",
+    "test:front-student": "node .preview/check-front-student.cjs",
+    "prepare:clothing-seller": "node scripts/prepare-clothing-seller.mjs && node scripts/fit-clothing-seller-eyes.cjs && node scripts/sync-clothing-seller.mjs && node scripts/prepare-playground.mjs",
+    "test:clothing-seller": "node .preview/check-clothing-seller.cjs",
+    "test:eyes": "node .preview/check-revised-eyes.cjs",
+    "prepare:time": "node scripts/prepare-time-controls.mjs",
+    "test:time": "node .preview/check-time-controls.cjs"
   },
   "engines": {
     "node": ">=20"

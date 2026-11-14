@@ -29,9 +29,9 @@
       "benches": 2
     }
   ],
-  "instances": 8630,
-  "instancedTriangles": 307948,
-  "colliders": 399,
+  "instances": 8680,
+  "instancedTriangles": 309208,
+  "colliders": 353,
   "footballGoals": 2,
   "fitnessMachines": 3,
   "treesOnPlaySurface": 0,

@@ -1,0 +1,18 @@
+{
+  "source": "source/original.glb",
+  "sourceFile": "5c2b58a8a2d261febcaecefb0b808a59.glb",
+  "sourceSha256": "ea8da68482975d8a52c177305fd6e47be35349c8f05bd07f663e677a834788b8",
+  "sourceTriangles": 1500000,
+  "triangles": 48000,
+  "vertices": 36350,
+  "joints": 15,
+  "height": 1.82,
+  "sourceTransformApplied": true,
+  "textureSizes": {
+    "color": 1536,
+    "normal": 1024,
+    "surface": 1024
+  },
+  "simplificationError": 0.0016912630526348948,
+  "packedGeometryBytes": 1051352
+}

@@ -1,0 +1,20 @@
+{
+  "source": "source/base_basic_pbr.glb",
+  "archive": "23918bea-19f4-4b91-b9ef-9ba190b22550.zip",
+  "sourceSha256": "912877eab078fa594e1eba6cef9f6776bb651ccda4a8ec9c76e13cb97d180381",
+  "originalTriangles": 1000000,
+  "triangles": 48000,
+  "vertices": 38264,
+  "joints": 15,
+  "height": 1.85,
+  "centered": true,
+  "sharedPlayerSkeleton": true,
+  "head": "The current player head and fitted eyes are retained; the old shirt collar and the supplied distorted face are excluded; the two necklines overlap beneath the collar",
+  "parts": {
+    "head": 5650,
+    "body": 42265,
+    "casualHanging": 31233,
+    "uniformHanging": 33800
+  },
+  "simplificationError": 0.0016192877665162086
+}

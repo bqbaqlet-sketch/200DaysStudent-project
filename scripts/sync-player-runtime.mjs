@@ -1,0 +1,10 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import vm from 'node:vm';
+import {fileURLToPath} from 'node:url';
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..'),file=path.join(root,fs.readdirSync(root).find(f=>f!=='index.html'&&f.endsWith('.html')));
+const html=fs.readFileSync(file,'utf8'),newline=html.includes('\r\n')?'\r\n':'\n',begin='// BEGIN PLAYER_CHARACTER',end='// END PLAYER_CHARACTER';
+const first=html.indexOf(begin),last=html.indexOf(end,first);if(first<0||last<first)throw Error('Missing player block');
+const player=fs.readFileSync(path.join(root,'assets/characters/player/player-asset.json'),'utf8').trim(),uniform=fs.readFileSync(path.join(root,'assets/characters/player-uniform/uniform-asset.json'),'utf8').trim(),runtime=fs.readFileSync(path.join(root,'assets/characters/player/player-runtime.js'),'utf8').trim();
+const block=[begin,'const playerCharacterAsset='+player+';','const playerUniformAsset='+uniform+';',runtime,end,''].join('\n').replace(/\r?\n/g,newline);
+const updated=html.slice(0,first)+block+html.slice(last+end.length).replace(/^\r?\n/,'');new vm.Script(updated.match(/<script>([\s\S]*?)<\/script>/)[1]);fs.writeFileSync(file,updated);console.log('Updated player outfits and runtime');

@@ -12,7 +12,7 @@ const context = new Proxy({createLinearGradient: gradient, createRadialGradient:
   get: (target, key) => target[key] || (() => {})
 });
 const document = { createElement: () => ({width: 0, height: 0, getContext: () => context}) };
-const start = html.indexOf('function buildHomeLocation()');
+const start = html.includes('// BEGIN HOME_LOCATION') ? html.indexOf('// BEGIN HOME_LOCATION') : html.indexOf('function buildHomeLocation()');
 const end = html.indexOf('// ---- Интерьер четвёртого подъезда.', start);
 const world = new vm.Script(html.slice(start, end) + '\nbuildHomeLocation()').runInNewContext({THREE, document});
 const hit = (x, z) => !world.contains(x, z) || world.dynamicHit(x, z) ||
@@ -22,15 +22,20 @@ assert.equal(world.scene.userData.footballGoals, 2);
 assert.equal(world.scene.userData.fitnessMachines, 3);
 assert.equal(world.scene.userData.courtyardReference.entrance, 5);
 let instances = 0, triangles = 0;
-for(const mesh of world.scene.children){
+world.scene.traverse(mesh=>{
   if(mesh.isInstancedMesh){
     assert(Array.from(mesh.instanceMatrix.array).every(Number.isFinite), 'Invalid instance transform');
     instances += mesh.count;
     triangles += (mesh.geometry.index?.count || mesh.geometry.attributes.position.count) / 3 * mesh.count;
   }
   if(mesh.geometry) assert(Array.from(mesh.geometry.attributes.position.array).every(Number.isFinite), 'Invalid geometry');
-}
+});
 for(const b of world.colliders) assert(b.every(Number.isFinite), 'Invalid collider');
+const blockedEntries=[];
+for(const unit of world.playground.units)for(let slot=0;slot<unit.slots;slot++){
+  const entry=unit.entry(slot);if(hit(entry.x,entry.z))blockedEntries.push({id:unit.id,slot,entry:entry.toArray()});
+}
+assert.deepEqual(blockedEntries,[],'Every playground entrance must be reachable');
 const treesOnPlaySurface=world.scene.userData.trees.filter(t=>t.x+t.radius>5&&t.x-t.radius<51&&t.z+t.radius>21&&t.z-t.radius<51);
 assert.equal(treesOnPlaySurface.length,0,'Tree trunks must be outside the rubber play surface');
 function walk(points) {

@@ -1,0 +1,19 @@
+<div id="timeControls" hidden>
+ <section class="timeCard" role="dialog" aria-modal="true" aria-labelledby="timeTitle" aria-describedby="timeHelp">
+  <div class="timeHeading"><h2 id="timeTitle">Скоротать время</h2><button type="button" id="timeClose" aria-label="Закрыть управление временем">×</button></div>
+  <p id="timeReadout" aria-live="polite"></p>
+  <div class="timeSteps" role="group" aria-label="Перемотка времени">
+   <button type="button" data-time-shift="-10">−10 мин</button><button type="button" data-time-shift="10">+10 мин</button>
+   <button type="button" data-time-shift="-60">−1 час</button><button type="button" data-time-shift="60">+1 час</button>
+   <button type="button" data-time-shift="-1440">−1 день</button><button type="button" data-time-shift="1440">+1 день</button>
+  </div>
+  <form id="timeForm">
+   <label>День<input id="timeDay" type="number" inputmode="numeric" min="1" step="1" value="1" required></label>
+   <label>Время<input id="timeValue" type="time" step="60" value="07:30" required></label>
+   <button type="submit" id="timeApply">Перейти</button>
+  </form>
+  <p id="timeHelp">Игра на паузе. Расписания персонажей и освещение обновятся при перемотке.</p>
+  <p id="timeMessage" role="status"></p>
+  <button type="button" id="timeResume">Продолжить игру</button>
+ </section>
+</div>

@@ -10,7 +10,7 @@ Object.defineProperty(w.performance,'now',{value:()=>clock});
 Object.defineProperty(d.documentElement,'clientWidth',{value:1280});
 Object.defineProperty(d.documentElement,'clientHeight',{value:800});
 w.requestAnimationFrame=()=>0;
-const ctx=new Proxy({createLinearGradient:()=>({addColorStop(){}}),createRadialGradient:()=>({addColorStop(){}})},
+const ctx=new Proxy({createImageData:(width,height)=>({width,height,data:new Uint8ClampedArray(width*height*4)}),createLinearGradient:()=>({addColorStop(){}}),createRadialGradient:()=>({addColorStop(){}})},
  {get:(target,key)=>target[key]||(()=>{})});
 w.HTMLCanvasElement.prototype.getContext=()=>ctx;
 w.HTMLCanvasElement.prototype.getBoundingClientRect=()=>({left:0,top:0,width:1280,height:800});

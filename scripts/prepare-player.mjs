@@ -62,7 +62,9 @@ fs.writeFileSync(path.join(out,'preparation.json'),JSON.stringify(metadata,null,
 const main=path.join(root,fs.readdirSync(root).find(f=>f!=='index.html'&&f.endsWith('.html'))),html=fs.readFileSync(main,'utf8'),newline=html.includes('\r\n')?'\r\n':'\n';
 const begin='// BEGIN PLAYER_CHARACTER',end='// END PLAYER_CHARACTER',runtimeFile=path.join(out,'player-runtime.js');
 if(fs.existsSync(runtimeFile)){
- const block=(begin+'\nconst playerCharacterAsset='+JSON.stringify(asset)+';\n'+fs.readFileSync(runtimeFile,'utf8').trim()+'\n'+end+'\n').replace(/\r?\n/g,newline);
+ const uniformFile=path.join(root,'assets/characters/player-uniform/uniform-asset.json');
+ const uniform=fs.existsSync(uniformFile)?'const playerUniformAsset='+fs.readFileSync(uniformFile,'utf8').trim()+';\n':'';
+ const block=(begin+'\nconst playerCharacterAsset='+JSON.stringify(asset)+';\n'+uniform+fs.readFileSync(runtimeFile,'utf8').trim()+'\n'+end+'\n').replace(/\r?\n/g,newline);
  let updated;if(html.includes(begin)){const first=html.indexOf(begin),last=html.indexOf(end,first);if(last<0)throw Error('Player block end missing');updated=html.slice(0,first)+block+html.slice(last+end.length).replace(/^\r?\n/,'');}
  else{const anchor='function buildCollegeEntranceInterior(){';if(html.split(anchor).length!==2)throw Error('Expected one college builder');updated=html.replace(anchor,block+newline+anchor);}
  fs.writeFileSync(main,updated);
