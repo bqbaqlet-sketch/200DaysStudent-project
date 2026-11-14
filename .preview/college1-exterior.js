@@ -104,7 +104,7 @@ function buildCollege1Exterior(){
   narrowWindow(u,u===-27.43?2.13:1.53,2.828,w,u===-27.43?.72:1.67);
  }
  const wingSign=texture(canvas(1536,96,(g,w,h)=>{
-  const title='BQFQ · ИННОВАЦИЯЛЫҚ КӨПСАЛАЛЫ КОЛЛЕДЖІ';
+  const title='BQFQ · ИННОВАЦИОННЫЙ МНОГОПРОФИЛЬНЫЙ КОЛЛЕДЖ';
   g.font='bold 59px Arial';g.textAlign='center';g.textBaseline='middle';
   g.fillStyle='#203b57';g.fillText(title,w/2+4,h/2+5,w-30);
   g.strokeStyle='#194875';g.lineWidth=2;g.strokeText(title,w/2,h/2,w-30);
@@ -169,7 +169,7 @@ function buildCollege1Exterior(){
  plane(-.46,1.95,.25,.35,.26,mat(0xffffff,{map:texture(paper)}));
  function plaque(u){
   box(u-.39,2.56,.04,u+.39,3.12,.1,p.gold);
-  const c=canvas(384,256,(g,w,h)=>{g.fillStyle='#115382';g.fillRect(0,0,w,h);g.strokeStyle='#c8b473';g.lineWidth=4;g.strokeRect(8,8,w-16,h-16);g.fillStyle='#d5c78b';g.beginPath();g.arc(192,45,16,0,7);g.fill();g.textAlign='center';g.font='bold 21px Arial';g.fillText('КОЛЛЕДЖ BQFQ',192,110);g.font='17px Arial';g.fillText('БІЛІМ БЕРУ ОРТАЛЫҒЫ',192,146);g.fillText('КОРПУС 1',192,184)});
+  const c=canvas(384,256,(g,w,h)=>{g.fillStyle='#115382';g.fillRect(0,0,w,h);g.strokeStyle='#c8b473';g.lineWidth=4;g.strokeRect(8,8,w-16,h-16);g.fillStyle='#d5c78b';g.beginPath();g.arc(192,45,16,0,7);g.fill();g.textAlign='center';g.font='bold 21px Arial';g.fillText('КОЛЛЕДЖ BQFQ',192,110);g.font='17px Arial';g.fillText('ОБРАЗОВАТЕЛЬНЫЙ ЦЕНТР',192,146);g.fillText('КОРПУС 1',192,184)});
   plane(u,2.84,.105,.74,.52,mat(0xffffff,{map:texture(c)}));
  }
  plaque(-1.3);plaque(1.3);

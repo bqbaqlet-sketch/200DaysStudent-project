@@ -8,7 +8,7 @@ const project=path.resolve(__dirname,'..'),out=path.join(__dirname,'nvp110-qa');
   await page.route('https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js',r=>r.fulfill({path:require.resolve('three/build/three.min.js'),contentType:'application/javascript'}));
   await page.addInitScript(()=>{window.requestAnimationFrame=()=>0;Element.prototype.requestFullscreen=()=>Promise.reject()});
   await page.goto(pathToFileURL(path.join(project,fs.readdirSync(project).find(n => n !== 'index.html' && n.endsWith('.html')))).href,{waitUntil:'load',timeout:60000});
-  await page.locator('#play').click();
+  await require('./test-runtime.cjs').startTester(page);
   const report=await page.evaluate(()=>{
    switchLocation('college1',{fresh:true});const world=activeWorld,nvp=world.nvp110,actor=nvp.model.root;
    const start=nvp.schedule.startMinute*REAL_MS_PER_GAME_MINUTE,deadline=NVP_TEACHER.seatedMinute*REAL_MS_PER_GAME_MINUTE;

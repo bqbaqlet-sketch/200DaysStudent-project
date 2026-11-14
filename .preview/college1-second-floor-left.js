@@ -128,6 +128,6 @@
    // Открытый проход в общий лестничный холл, соединённый с первым этажом.
    for(const u of [-30.05,-28.55])box(u-.035,0,-1.68,u+.035,2.72,-1.43,p.oak);
    box(-30.085,2.67,-1.68,-28.515,2.74,-1.43,p.oak);
-   label('ШЫҒУ · ВЫХОД',-29.3,2.9,-1.65,.72,.17,'#4c8398','#fff',Math.PI);
+   label('ВЫХОД',-29.3,2.9,-1.65,.72,.17,'#4c8398','#fff',Math.PI);
    upperMark('upperLeftFarStairPassage',-29.3,-1.6,1.5,.2,{open:true,stairInteriorDeferred:false});
    upperMark('upperLeftCorridor',-14.2,-2.85,33,2.5,{classrooms:10,closedDoors:10,crossBeams:2});

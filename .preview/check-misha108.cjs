@@ -8,7 +8,7 @@ const project=path.resolve(__dirname,'..'),out=path.join(__dirname,'misha-qa');f
   await page.route('https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js',r=>r.fulfill({path:require.resolve('three/build/three.min.js'),contentType:'application/javascript'}));
   await page.addInitScript(()=>{window.requestAnimationFrame=()=>0;Element.prototype.requestFullscreen=()=>Promise.reject()});
   const main=path.join(project,fs.readdirSync(project).find(f=>f!=='index.html'&&f.endsWith('.html')));
-  await page.goto(pathToFileURL(main).href,{waitUntil:'load',timeout:60000});await page.locator('#play').click();
+  await page.goto(pathToFileURL(main).href,{waitUntil:'load',timeout:60000});await require('./test-runtime.cjs').startTester(page);
   const report=await page.evaluate(()=>{
    switchLocation('college1',{fresh:true});const world=activeWorld,misha=world.misha108;
    const students=[world.student108,world.alexey108,world.sanya108,misha];

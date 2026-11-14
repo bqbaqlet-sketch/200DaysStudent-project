@@ -14,6 +14,7 @@ function createTimeControls(){
   if(!riding)for(const control of panel.querySelectorAll('[data-time-shift]'))control.disabled=state.absoluteMinute===0&&Number(control.dataset.timeShift)<0;
  }
  function open(){
+  if(gameMode!=='tester')return;
   if(opened||document.hidden||sh>sw||document.getElementById('start').style.display!=='none')return;
   previousFocus=document.activeElement;resetInput();doorPointer=transitionPointer=null;closeDoorChoices();
   // Home's pauseMedia also advances ride physics on resume; keep those frozen here.

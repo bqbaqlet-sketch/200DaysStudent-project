@@ -335,7 +335,7 @@ function buildCollege2Interior(){
  for(const [x,z,i] of [[-.8,-2.9,.20],[5.3,-3.5,.19],[-2.8,-8.6,.19],[.6,-10,.16],[.6,-16,.17],[.6,-22.9,.16],[.6,-28,.16],[-4,-27.8,.19],[-7.4,-27.8,.17]])roomLight(x,z,i);
 
  door(0,-.035,2.08,2.16,Math.PI,{double:true,top:.56,panorama:entryScene,closed:true});
- sign(['ШЫҒУ · ВЫХОД'],.54,.135,0,2.84,-.106,Math.PI,{bg:'#287054',fg:'#fff',size:54});
+ sign(['ВЫХОД'],.54,.135,0,2.84,-.106,Math.PI,{bg:'#287054',fg:'#fff',size:54});
  sign(['ВНИМАНИЕ','ВХОД В КОРПУС'],.32,.35,.46,1.28,-.122,Math.PI,{bg:'#e7bb22',fg:'#433512',size:39});
  for(const z of [-1.45,-3.25,-5.05]){
   surface(1.02,1.76,-4.707,1.7,z,entryScene,{yaw:Math.PI/2});
@@ -353,7 +353,7 @@ function buildCollege2Interior(){
   door(2.057,z,.98,2.1,-Math.PI/2,{label,closed:true});
  door(.63,-30.505,1.66,2.16,0,{double:true,pane:white,closed:true});
  door(-8.805,-27.85,2.28,2.16,Math.PI/2,{double:true,top:.56,panorama:entryScene,closed:true});
- sign(['ШЫҒУ · ВЫХОД'],.54,.135,-8.79,2.84,-27.85,Math.PI/2,{bg:'#287054',fg:'#fff',size:54});
+ sign(['ВЫХОД'],.54,.135,-8.79,2.84,-27.85,Math.PI/2,{bg:'#287054',fg:'#fff',size:54});
 
  turnstile(-.68,-2.62);turnstile(-1.99,-2.62);
  rail(1.22,-2.62,2.3,-2.62);rail(2.3,-2.62,2.3,-1.42);
@@ -377,7 +377,7 @@ function buildCollege2Interior(){
   ctx.fillStyle='#ecece6';ctx.fillRect(0,0,w,th);ctx.fillStyle='#c8c8bf';for(let x=0;x<w;x+=4)ctx.fillRect(x,0,1,th);
  })});
  surface(4.15,h-.07,4.38,h/2,-6.507,ribbed,{u:8});
- sign(['BQFQ','БІЛІМ · ШЫҒАРМАШЫЛЫҚ · ДАМУ'],2.7,.44,4.38,1.91,-6.49,0,{bg:'#ecece6',fg:'#17467b',size:37});
+ sign(['BQFQ','ЗНАНИЯ · ТВОРЧЕСТВО · РАЗВИТИЕ'],2.7,.44,4.38,1.91,-6.49,0,{bg:'#ecece6',fg:'#17467b',size:37});
  for(const [z,w] of [[-5.37,.92],[-3.53,1.64],[-1.66,.94]])
   box(7.065,1.02,z-w/2,7.11,2.69,z+w/2,black);
  for(const z of [-5.32,-3.52,-1.7])plant(6.7,z,.93,0,true);

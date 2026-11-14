@@ -10,7 +10,7 @@ const sha=bytes=>crypto.createHash('sha256').update(bytes).digest('hex');
   await page.route('https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js',r=>r.fulfill({path:require.resolve('three/build/three.min.js'),contentType:'application/javascript'}));
   await page.addInitScript(()=>{requestAnimationFrame=()=>0;Element.prototype.requestFullscreen=()=>Promise.reject()});
   const game=fs.readdirSync(project).find(f=>f!=='index.html'&&f.endsWith('.html'));
-  await page.goto(pathToFileURL(path.join(project,game)).href,{waitUntil:'load',timeout:60000});await page.locator('#play').click();
+  await page.goto(pathToFileURL(path.join(project,game)).href,{waitUntil:'load',timeout:60000});await require('./test-runtime.cjs').startTester(page);
   const setup=await page.evaluate(async()=>{
    switchLocation('apartment',{fresh:true});feetY=0;C.position.set(-2,1.7,-2);
    window.momQA=activeWorld.mom;window.momWorld=activeWorld;

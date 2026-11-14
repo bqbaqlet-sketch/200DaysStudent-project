@@ -8,7 +8,7 @@ const out=path.join(__dirname,'room212-qa');fs.mkdirSync(out,{recursive:true});
   await page.route('https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js',r=>r.fulfill({path:require.resolve('three/build/three.min.js'),contentType:'application/javascript'}));
   await page.addInitScript(()=>{requestAnimationFrame=()=>0;Element.prototype.requestFullscreen=()=>Promise.reject()});
   const project=path.resolve(__dirname,'..'),game=fs.readdirSync(project).find(f=>f!=='index.html'&&f.endsWith('.html'));
-  await page.goto(pathToFileURL(path.join(project,game)).href,{waitUntil:'load',timeout:60000});await page.locator('#play').click();
+  await page.goto(pathToFileURL(path.join(project,game)).href,{waitUntil:'load',timeout:60000});await require('./test-runtime.cjs').startTester(page);
   const arrival=await page.evaluate(()=>{
    switchLocation('college1',{fresh:true});gameTime.set(1,9,30);
    const world=activeWorld,room=world.room212;let samples=0,highest=0;

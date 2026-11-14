@@ -1,0 +1,18 @@
+{
+  "music": {
+    "file": "main-theme.mp3",
+    "sourceName": "Main Theme - Curious Explorers Theme - Treblo.mp3",
+    "title": "Main Theme — Curious Explorers Theme",
+    "artist": "Treblo",
+    "durationSeconds": 262.488,
+    "bytes": 10498840,
+    "sha256": "f6a9be349241a9a6291450c9244d6289f9964a8c802f460659865954b88e8b7b"
+  },
+  "logo": {
+    "file": "atm4-logo.jpg",
+    "team": "ATM4",
+    "source": "User-provided team logo",
+    "bytes": 106564,
+    "sha256": "19339cf06b8687e63936a5a35cacd92d9494f36721ad05d2dba37cb35744de81"
+  }
+}

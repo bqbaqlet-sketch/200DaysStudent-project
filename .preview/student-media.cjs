@@ -7,7 +7,7 @@ const project=path.resolve(__dirname,'..'),out=path.join(__dirname,'students108-
   const page=await browser.newPage({viewport:{width:1100,height:700}}),errors=[];page.on('pageerror',e=>errors.push(e.message));
   await page.route('https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js',r=>r.fulfill({path:require.resolve('three/build/three.min.js'),contentType:'application/javascript'}));
   await page.addInitScript(()=>{window.requestAnimationFrame=()=>0;Element.prototype.requestFullscreen=()=>Promise.reject()});
-  await page.goto(pathToFileURL(path.join(project,fs.readdirSync(project).find(f=>f!=='index.html'&&f.endsWith('.html')))).href,{waitUntil:'load',timeout:60000});await page.locator('#play').click();
+  await page.goto(pathToFileURL(path.join(project,fs.readdirSync(project).find(f=>f!=='index.html'&&f.endsWith('.html')))).href,{waitUntil:'load',timeout:60000});await require('./test-runtime.cjs').startTester(page);
   const modelCount=await page.evaluate(async mishaOnly=>{
    const definitions=[['Дима',student108Asset,'student-108',.884,1.32],['Саня',sanya108Asset,'sanya-108',.775,1.28],['Алексей',alexey108Asset,'alexey-108',.986,1.34],['Миша',misha108Asset,'misha-108',.984,1.30]];
    window.studentStage={models:definitions.filter(([, ,id])=>!mishaOnly||id==='misha-108').map(([name,asset,id,height,speed])=>({name,id,speed,model:buildStudentCharacter(asset,id,height)}))};

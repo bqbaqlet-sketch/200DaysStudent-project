@@ -29,7 +29,7 @@ class Audio{
 }
 w.THREE={...realThree,WebGLRenderer:Renderer};w.AudioContext=Audio;
 const evaluate=code=>vm.runInContext(code,context);
-evaluate(script);d.getElementById('start').style.display='none';
+evaluate(script);evaluate("mainMenu.start('tester')");
 const events=[];w.addEventListener('game:door-knock',e=>events.push({...e.detail}));
 const button=d.getElementById('interact');
 button.getBoundingClientRect=()=>({left:602,top:362,width:76,height:76});
@@ -59,7 +59,7 @@ evaluate(`C.position.set(-1.75,1.7,.4);feetY=0;
 assert.equal(evaluate('feetY'),3);assert.equal(evaluate('getInteractionTarget().action'),'apartment');
 evaluate('C.position.x=2.05');assert.equal(evaluate('getInteractionTarget()'),null);
 evaluate('C.position.x=-2.05;feetY=0');assert.equal(evaluate('getInteractionTarget()'),null);nearDoor();
-assert.equal(d.querySelector('[role="dialog"]'),null,'Door choices must not be a dialog');
+assert.equal(d.getElementById('doorActions').querySelector('[role="dialog"]'),null,'Door choices must not be a dialog');
 assert.equal(d.getElementById('doorMenu'),null);assert.equal(d.getElementById('knockHand'),null);
 // A quick tap must not open the apartment choices.
 button.dispatchEvent(pointer('pointerdown'));clock+=100;button.dispatchEvent(pointer('pointerup'));

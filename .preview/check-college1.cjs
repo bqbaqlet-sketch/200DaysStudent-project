@@ -29,7 +29,7 @@ class Audio{
 }
 w.THREE={...realThree,WebGLRenderer:Renderer};w.AudioContext=Audio;
 const evaluate=code=>vm.runInContext(code,context);
-evaluate(script);d.getElementById('start').style.display='none';
+evaluate(script);evaluate("mainMenu.start('tester')");
 const button=d.getElementById('interact');
 button.getBoundingClientRect=()=>({left:602,top:362,width:76,height:76});
 const pointer=(type,id=7,x=640,y=400)=>{

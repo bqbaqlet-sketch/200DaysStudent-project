@@ -9,7 +9,7 @@ const expectedVoice=require('../assets/voices/dialogue.json').characters.medvede
   await page.route('https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js',r=>r.fulfill({path:require.resolve('three/build/three.min.js'),contentType:'application/javascript'}));
   await page.addInitScript(()=>{window.requestAnimationFrame=()=>0;Element.prototype.requestFullscreen=()=>Promise.reject();});
   await page.goto(pathToFileURL(path.join(project,fs.readdirSync(project).find(f=>f!=='index.html'&&f.endsWith('.html')))).href,{waitUntil:'load',timeout:60000});
-  await page.locator('#play').click();
+  await require('./test-runtime.cjs').startTester(page);
   const report=await page.evaluate(async()=>{
    const g=locations.college.medvedev,actor=g.model.root,world=locations.college;
    C.position.set(0,1.7,45);feetY=0;

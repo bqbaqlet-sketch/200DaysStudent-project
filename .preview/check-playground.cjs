@@ -5,7 +5,7 @@ const project=path.resolve(__dirname,'..'),out=path.join(__dirname,'playground-q
  const page=await browser.newPage({viewport:{width:1200,height:800},hasTouch:true}),errors=[];page.setDefaultTimeout(60000);page.on('pageerror',error=>errors.push(error.message));page.on('console',message=>{if(message.type()==='error'&&/WebGLProgram|shader error/i.test(message.text()))errors.push(message.text())});
  await page.route('https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js',route=>route.fulfill({path:require.resolve('three/build/three.min.js'),contentType:'application/javascript'}));
  await page.addInitScript(()=>{window.qaTime=1000;Object.defineProperty(performance,'now',{value:()=>qaTime});requestAnimationFrame=()=>0;Element.prototype.requestFullscreen=()=>Promise.reject()});
- const game=fs.readdirSync(project).find(file=>file!=='index.html'&&file.endsWith('.html'));await page.goto(pathToFileURL(path.join(project,game)).href,{waitUntil:'load',timeout:60000});await page.locator('#play').click();
+ const game=fs.readdirSync(project).find(file=>file!=='index.html'&&file.endsWith('.html'));await page.goto(pathToFileURL(path.join(project,game)).href,{waitUntil:'load',timeout:60000});await require('./test-runtime.cjs').startTester(page);
  const inventory=await page.evaluate(()=>{
   switchLocation('home',{fresh:true});gameTime.set(1,9,0);window.pg=activeWorld.playground;
   window.drawPlay=()=>{C.rotation.set(pitch,yaw,0);hud.textContent=zone(C.position.x,C.position.z);updateInteraction(performance.now());applyGameLighting(activeWorld);R.render(activeWorld.scene,C)};

@@ -49,7 +49,13 @@
     "test:clothing-seller": "node .preview/check-clothing-seller.cjs",
     "test:eyes": "node .preview/check-revised-eyes.cjs",
     "prepare:time": "node scripts/prepare-time-controls.mjs",
-    "test:time": "node .preview/check-time-controls.cjs"
+    "test:time": "node .preview/check-time-controls.cjs",
+    "prepare:menu": "node scripts/prepare-main-menu.mjs",
+    "test:menu": "node .preview/check-main-menu.cjs",
+    "prepare:map-ru": "node scripts/prepare-map-ru.mjs",
+    "test:map-ru": "node .preview/check-map-russian.cjs",
+    "prepare:world-audio": "node scripts/prepare-world-audio.mjs",
+    "test:world-audio": "node .preview/check-world-audio.cjs"
   },
   "engines": {
     "node": ">=20"

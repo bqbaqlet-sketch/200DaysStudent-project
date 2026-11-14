@@ -6,7 +6,7 @@ const source=process.argv[2]||path.join(project,fs.readdirSync(project).find(f =
  const page=await b.newPage({viewport:{width:1360,height:800}}),errors=[];page.on('pageerror',e=>errors.push(e.message));
  await page.addInitScript(()=>{window.requestAnimationFrame=()=>0;Element.prototype.requestFullscreen=()=>Promise.reject()});
  await page.goto(pathToFileURL(source).href,{waitUntil:'load',timeout:60000});
- console.log('load errors',JSON.stringify(errors));assert.deepEqual(errors,[]);await page.locator('#play').click();
+ console.log('load errors',JSON.stringify(errors));assert.deepEqual(errors,[]);await require('./test-runtime.cjs').startTester(page);
  await page.evaluate(()=>{window.stepBus=seconds=>{for(let s=0;s<seconds-1e-6;){const dt=Math.min(.05,seconds-s);s+=dt;clockElapsedMs+=dt*1000;busTransit.update(dt);activeWorld.update?.(dt,{x:C.position.x,z:C.position.z,feet:feetY})}publishGameClock();updateInteraction(performance.now())};window.renderBus=()=>{C.rotation.set(pitch,yaw,0);hud.textContent=zone(C.position.x,C.position.z);applyGameLighting(activeWorld);R.render(activeWorld.scene,C)}});
  const state=await page.evaluate(()=>{
   stepBus(1.25);const bus=busTransit.fleet.get('college');C.position.copy(bus.root.localToWorld(new THREE.Vector3(-2.05,1.7-bus.root.position.y,BUS_DOORS[1])));yaw=-Math.PI;pitch=0;updateInteraction(performance.now());

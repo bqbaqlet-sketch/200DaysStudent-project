@@ -7,7 +7,7 @@ const project=path.resolve(__dirname,'..'),out=path.join(__dirname,'outfits-qa')
  await page.route('https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js',route=>route.fulfill({path:require.resolve('three/build/three.min.js'),contentType:'application/javascript'}));
  await page.addInitScript(()=>{window.qaTime=1000;Object.defineProperty(performance,'now',{value:()=>qaTime});requestAnimationFrame=()=>0;Element.prototype.requestFullscreen=()=>Promise.reject()});
  const game=fs.readdirSync(project).find(file=>file!=='index.html'&&file.endsWith('.html'));
- await page.goto(pathToFileURL(path.join(project,game)).href,{waitUntil:'load',timeout:60000});await page.locator('#play').click();
+ await page.goto(pathToFileURL(path.join(project,game)).href,{waitUntil:'load',timeout:60000});await require('./test-runtime.cjs').startTester(page);
  const initial=await page.evaluate(()=>{
   switchLocation('apartment',{fresh:true});gameTime.set(1,9,0);
   window.drawOutfit=()=>{C.rotation.set(pitch,yaw,0);hud.textContent=zone(C.position.x,C.position.z);updateInteraction(performance.now());applyGameLighting(activeWorld);R.render(activeWorld.scene,C)};

@@ -13,4 +13,7 @@ function browserOptions() {
   }
   return {};
 }
-module.exports = { browserOptions };
+async function startTester(page) {
+  await page.evaluate(() => mainMenu.start('tester'));
+}
+module.exports = { browserOptions, startTester };

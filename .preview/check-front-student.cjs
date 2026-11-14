@@ -8,7 +8,7 @@ const project=path.resolve(__dirname,'..'),out=path.join(__dirname,'front-studen
   await page.route('https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js',r=>r.fulfill({path:require.resolve('three/build/three.min.js'),contentType:'application/javascript'}));
   await page.addInitScript(()=>{window.requestAnimationFrame=()=>0;Element.prototype.requestFullscreen=()=>Promise.reject()});
   const main=path.join(project,fs.readdirSync(project).find(f=>f!=='index.html'&&f.endsWith('.html')));
-  await page.goto(pathToFileURL(main).href,{waitUntil:'load',timeout:60000});await page.locator('#play').click();
+  await page.goto(pathToFileURL(main).href,{waitUntil:'load',timeout:60000});await require('./test-runtime.cjs').startTester(page);
   const report=await page.evaluate(()=>{
    switchLocation('college1',{fresh:true});const world=activeWorld,student=world.frontStudent108;
    const students=[world.student108,world.alexey108,world.sanya108,world.misha108,student];
@@ -83,6 +83,38 @@ const project=path.resolve(__dirname,'..'),out=path.join(__dirname,'front-studen
    for(let t=0;t<38;t+=.05){clockElapsedMs=(8*60+20)*REAL_MS_PER_GAME_MINUTE+t*1000;activeWorld.update(.05,far);modes.add(actor.animation.mode);maxBlink=Math.max(maxBlink,actor.eyes.closed);headRange[0]=Math.min(headRange[0],actor.model.names.head.rotation.y);headRange[1]=Math.max(headRange[1],actor.model.names.head.rotation.y);}
    return {modes:[...modes],maxBlink,headRange,staysSeated:actor.root.position.distanceTo(root)<.001,eyes:actor.eyes.eyes.length};
   });report.life=life;assert(life.modes.includes('adjust-cuff')&&life.modes.includes('settle')&&life.modes.includes('attentive-nod')&&life.modes.includes('finger-tap'));assert(life.maxBlink>.9&&life.eyes===2&&life.staysSeated&&life.headRange[1]-life.headRange[0]>.15);
+  report.hands=await page.evaluate(()=>{
+   const model=activeWorld.frontStudent108.model,mesh=model.mesh,g=mesh.geometry,p=g.attributes.position,indices=g.attributes.skinIndex.array,weights=g.attributes.skinWeight.array;
+   const edges=[],seen=new Set(),handVertices=[];
+   for(let i=0;i<p.count;i++)if(Math.abs(p.getX(i))>.55&&p.getY(i)<.97&&p.getY(i)>.80)handVertices.push(i);
+   for(let i=0;i<g.index.count;i+=3)for(let j=0;j<3;j++){
+    const a=g.index.array[i+j],b=g.index.array[i+(j+1)%3],x=Math.abs((p.getX(a)+p.getX(b))/2),y=(p.getY(a)+p.getY(b))/2;
+    if(x<.46||x>.55||y<.95||y>1.08)continue;
+    const key=Math.min(a,b)+':'+Math.max(a,b);if(seen.has(key))continue;seen.add(key);
+    const length=new THREE.Vector3().fromBufferAttribute(p,a).distanceTo(new THREE.Vector3().fromBufferAttribute(p,b));
+    if(length>.001)edges.push([a,b,length]);
+   }
+   function vertex(i){
+    const point=new THREE.Vector3().fromBufferAttribute(p,i),result=new THREE.Vector3();
+    // r128 boneTransform reads the base attribute itself, so evaluate the GPU
+    // morph-before-skinning order explicitly for the relaxed thumb pose.
+    point.lerp(new THREE.Vector3().fromBufferAttribute(g.morphAttributes.position[0],i),mesh.morphTargetInfluences[0]).applyMatrix4(mesh.bindMatrix);
+    for(let k=0;k<4;k++)if(weights[i*4+k])result.addScaledVector(point.clone().applyMatrix4(new THREE.Matrix4().multiplyMatrices(mesh.skeleton.bones[indices[i*4+k]].matrixWorld,mesh.skeleton.boneInverses[indices[i*4+k]])),weights[i*4+k]);
+    return result.applyMatrix4(mesh.bindMatrixInverse);
+   }
+   let maxWristStretch=0,minDeskContact=Infinity,maxDeskContact=-Infinity;
+   for(let t=0;t<36;t+=.5){
+    model.pose({height:.535,sitting:1,time:activeWorld.frontStudent108.sequence.duration+t});model.root.updateMatrixWorld(true);
+    for(const [a,b,length] of edges)maxWristStretch=Math.max(maxWristStretch,vertex(a).distanceTo(vertex(b))/length);
+    if(t<8){const contact=Math.min(...handVertices.map(i=>vertex(i).y));minDeskContact=Math.min(minDeskContact,contact);maxDeskContact=Math.max(maxDeskContact,contact);}
+   }
+   model.pose({height:model.standingHeight,walking:1,gait:.25,time:0});
+   const walkingRestored=mesh.morphTargetInfluences[0]===0;gameTime.set(1,8,20);
+   return {maxWristStretch,minDeskContact,maxDeskContact,walkingRestored};
+  });
+  assert(report.hands.maxWristStretch<2.4,'Cuffs must not stretch into spikes during idle gestures');
+  assert(report.hands.minDeskContact>=.764&&report.hands.maxDeskContact<.779,'Relaxed fingers must rest just above the desk');
+  assert(report.hands.walkingRestored,'Walking must restore the source hand shape');
   assert(report.routes.find(r=>r.id==='student-front-108').seatedAt<480,'New student must sit before 08:00');
   report.attention=await page.evaluate(()=>{
    const actor=activeWorld.frontStudent108,far={x:999,z:999,feet:0};clockElapsedMs=(7*60+43)*REAL_MS_PER_GAME_MINUTE+(actor.sequence.duration+.5)*1000;activeWorld.updateCharacters(far,true);actor.root.updateWorldMatrix(true,false);

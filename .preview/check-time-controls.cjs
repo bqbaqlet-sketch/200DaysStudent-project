@@ -9,7 +9,7 @@ const root=path.resolve(__dirname,'..'),out=path.join(__dirname,'time-qa');fs.mk
   const file=path.join(root,fs.readdirSync(root).find(f=>f!=='index.html'&&f.endsWith('.html')));
   await page.goto(pathToFileURL(file).href,{waitUntil:'load',timeout:60000});
   await page.keyboard.press('t');assert(await page.locator('#timeControls').isHidden(),'Time menu stays closed before starting');
-  await page.locator('#play').click();await page.keyboard.down('w');await page.keyboard.press('t');
+  await require('./test-runtime.cjs').startTester(page);await page.keyboard.down('w');await page.keyboard.press('t');
   assert(await page.locator('#timeControls').isVisible());assert.equal(await page.locator('#gameClock').getAttribute('aria-expanded'),'true');
   const pause=await page.evaluate(()=>{
    const time=clockElapsedMs,position=C.position.toArray(),bus=busTransit.fleet.get('college').root,vehicle=bus.position.toArray();
@@ -64,7 +64,7 @@ const root=path.resolve(__dirname,'..'),out=path.join(__dirname,'time-qa');fs.mk
   const passenger=await page.evaluate(()=>{const before=clockElapsedMs,local=busTransit.rider.local.toArray();loop(last+30000);return {aboard:busTransit.aboard,unchanged:before===clockElapsedMs&&local.every((v,i)=>v===busTransit.rider.local.toArray()[i])};});assert(passenger.aboard&&passenger.unchanged);await page.keyboard.press('t');assert(await page.locator('#timeControls').isHidden());
   await page.evaluate(()=>{gameTime.set(1,7,29);switchLocation('home',{fresh:true});gameTime.set(1,12,0);});
   const mobile=await browser.newContext({viewport:{width:844,height:390},isMobile:true,hasTouch:true,deviceScaleFactor:1});const touch=await mobile.newPage();touch.on('pageerror',e=>errors.push(e.message));
-  await touch.route('https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js',r=>r.fulfill({path:require.resolve('three/build/three.min.js'),contentType:'application/javascript'}));await touch.addInitScript(()=>{requestAnimationFrame=()=>0;Element.prototype.requestFullscreen=()=>Promise.reject()});await touch.goto(pathToFileURL(file).href,{waitUntil:'load',timeout:60000});await touch.locator('#play').tap();
+  await touch.route('https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js',r=>r.fulfill({path:require.resolve('three/build/three.min.js'),contentType:'application/javascript'}));await touch.addInitScript(()=>{requestAnimationFrame=()=>0;Element.prototype.requestFullscreen=()=>Promise.reject()});await touch.goto(pathToFileURL(file).href,{waitUntil:'load',timeout:60000});await require('./test-runtime.cjs').startTester(touch);
   await touch.locator('#gameClock').tap();assert(await touch.locator('#timeControls').isVisible());await touch.locator('[data-time-shift="60"]').tap();assert.equal(await touch.locator('#clockTime').innerText(),'08:30');
   const layout=await touch.evaluate(()=>{const card=document.querySelector('.timeCard').getBoundingClientRect(),buttons=Array.from(document.querySelectorAll('#timeControls button')).map(b=>b.getBoundingClientRect());return {fits:card.x>=0&&card.y>=0&&card.right<=innerWidth&&card.bottom<=innerHeight,buttonsFit:buttons.every(b=>b.x>=card.x&&b.right<=card.right&&b.height>=44),noDrag:Object.keys(ptr).length===0&&joy.x===0&&joy.y===0};});assert(Object.values(layout).every(Boolean),JSON.stringify(layout));
   await touch.screenshot({path:path.join(out,'mobile.png')});

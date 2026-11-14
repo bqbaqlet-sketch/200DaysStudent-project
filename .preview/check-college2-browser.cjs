@@ -21,7 +21,8 @@ async function main() {
   const file = fs.readdirSync('.').find(name => name !== 'index.html' && name.endsWith('.html'));
   await page.goto(pathToFileURL(path.resolve(file)).href, { waitUntil: 'load', timeout: 60000 });
   await page.waitForFunction("typeof THREE !== 'undefined' && typeof updateInteraction === 'function'");
-  await page.evaluate(`document.getElementById('start').style.display='none';
+  await require('./test-runtime.cjs').startTester(page);
+  await page.evaluate(`
    C.position.set(11.55,1.7,10.95);feetY=0;yaw=Math.PI;pitch=0;updateInteraction(performance.now());`);
   assert.equal(await page.evaluate('getInteractionTarget().action'), 'enterCollege2');
   await page.keyboard.down('e');

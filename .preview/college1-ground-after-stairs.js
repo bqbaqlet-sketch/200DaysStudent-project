@@ -55,7 +55,7 @@
   }
   box(-1.835,2.68,9.58,.035,2.76,9.96,p.cream);
   box(-1.81,2.7,9.972,.01,2.72,9.98,p.iron);
-  label('ШЫҒУ · ВЫХОД',-.9,2.98,9.825,.71,.17,'#4c8398','#fff',0);
+  label('ВЫХОД',-.9,2.98,9.825,.71,.17,'#4c8398','#fff',0);
   box(-.355,0,8.89,-.085,.43,9.19,guardWhite,true);
   box(-.36,.405,8.885,-.08,.445,9.195,p.black);
   box(-.37,.445,8.875,-.07,.49,9.205,p.trim);
@@ -184,7 +184,7 @@
    for(const x of [-.69,.69])box(x-.02,1.1,-.05,x+.02,2.42,-.015,p.steel);
    for(const y of [1.12,2.4])box(-.71,y-.02,-.05,.71,y+.02,-.015,p.steel);
   });finalMark('finalGroundOfficeWindow',-8.1,12.25,1.44,.08,{between:['116','118']});
-  // Стенды «КОЛЛЕДЖ МАҚТАНЫШЫ»: золотой орнамент, портреты и нижние карманы.
+  // Стенды «ГОРДОСТЬ КОЛЛЕДЖА»: золотой орнамент, портреты и нижние карманы.
   function prideBoard(u,width,title,group){
    const map=texture(1536,768,(g,w,h)=>{
     g.fillStyle='#f4f1e8';g.fillRect(0,0,w,h);
@@ -196,7 +196,7 @@
     g.fillStyle='#9b874d';g.textAlign='center';g.font='bold 52px Georgia';g.fillText(title,w/2,68,w-110);
     g.fillStyle='#dad0df';g.fillRect(52,97,w-104,h-143);
     g.fillStyle='#9a7a9d';g.fillRect(52,97,w-104,42);g.fillStyle='#f7f1e8';g.font='bold 25px Arial';
-    g.fillText(group===1?'БІЛІМДІ ҰРПАҚ – ЕЛ БОЛАШАҒЫ':group===2?'БҮГІНГІ ІЗДЕНІС – ЕРТЕҢГІ ЖЕҢІС':'ҮЗДІК СТУДЕНТТЕР',w/2,127,w-150);
+    g.fillText(group===1?'ОБРАЗОВАННОЕ ПОКОЛЕНИЕ — БУДУЩЕЕ СТРАНЫ':group===2?'СЕГОДНЯШНИЕ СТАРАНИЯ — ЗАВТРАШНИЕ ПОБЕДЫ':'ЛУЧШИЕ СТУДЕНТЫ',w/2,127,w-150);
     const cols=width>3.8?8:6,cw=(w-154)/cols;
     for(let row=0;row<2;row++)for(let col=0;col<cols;col++){
      const x=77+col*cw,y=158+row*157,iw=cw-18,ih=139;
@@ -221,9 +221,9 @@
     panel(0,2.06,-.031,width-.045,1.715,new THREE.MeshBasicMaterial({map}),Math.PI);
    });finalMark('finalGroundPrideBoard',u,12.23,width,.09,{title,portraits:true,goldOrnament:true});
   }
-  prideBoard(-14.85,3.65,'КОЛЛЕДЖ МАҚТАНЫШЫ',1);
-  prideBoard(-19.18,4.6,'КОЛЛЕДЖ МАҚТАНЫШЫ',2);
-  prideBoard(-22.88,2.5,'КОЛЛЕДЖ МАҚТАНЫШЫ',3);
+  prideBoard(-14.85,3.65,'ГОРДОСТЬ КОЛЛЕДЖА',1);
+  prideBoard(-19.18,4.6,'ГОРДОСТЬ КОЛЛЕДЖА',2);
+  prideBoard(-22.88,2.5,'ГОРДОСТЬ КОЛЛЕДЖА',3);
   // Дальняя дверь закрыта; над глухими створками — светлая фрамуга с осенними деревьями.
   const finalAutumnMap=texture(512,320,(g,w,h)=>{
    g.fillStyle='#e7e9dc';g.fillRect(0,0,w,h);
@@ -255,7 +255,7 @@
    for(const x of [-.85,0,.85])box(x-.025,.12,-.085,x+.025,3.14,-.04,p.white);
    panel(0,2.775,-.05,1.65,.69,new THREE.MeshBasicMaterial({map:finalAutumnMap}),Math.PI);
    for(const y of [2.4,3.13])box(-.875,y-.026,-.085,.875,y+.026,-.04,p.white);
-   label('ШЫҒУ · ВЫХОД',0,3.24,-.08,.73,.16,'#4c8398','#fff',Math.PI);
+   label('ВЫХОД',0,3.24,-.08,.73,.16,'#4c8398','#fff',Math.PI);
    box(-.61,3.15,-.095,-.53,3.31,-.055,p.red);
    add(rodGeo,p.red,1.04,1.45,-.16,.085,.47,.085);
    rod([1.04,1.68,-.16],[1.13,1.79,-.16],.013,p.iron);

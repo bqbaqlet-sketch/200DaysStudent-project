@@ -12,7 +12,7 @@ const project=path.resolve(__dirname,'..'),out=path.join(__dirname,'player-qa');
    Object.defineProperty(performance,'now',{configurable:true,value:()=>qaTime});requestAnimationFrame=()=>0;Element.prototype.requestFullscreen=()=>Promise.reject();
   });
   const game=fs.readdirSync(project).find(f=>f!=='index.html'&&f.endsWith('.html'));
-  await page.goto(pathToFileURL(path.join(project,game)).href,{waitUntil:'load',timeout:60000});await page.locator('#play').click();assert.deepEqual(errors,[]);
+  await page.goto(pathToFileURL(path.join(project,game)).href,{waitUntil:'load',timeout:60000});await require('./test-runtime.cjs').startTester(page);assert.deepEqual(errors,[]);
   const setup=await page.evaluate(()=>{
    window.drawHero=(dt=1/60)=>{qaTime+=dt*1000;C.rotation.set(pitch,yaw,0);hud.textContent=zone(C.position.x,C.position.z);updateInteraction(performance.now());applyGameLighting(activeWorld);R.render(activeWorld.scene,C)};
    return {sourceTriangles:playerAvatar.model.mesh.geometry.index.count/3,firstPersonTriangles:playerAvatar.firstPersonMesh.geometry.index.count/3,

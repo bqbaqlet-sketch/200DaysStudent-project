@@ -11,7 +11,7 @@ fs.mkdirSync(out,{recursive:true});
   await page.addInitScript(()=>{requestAnimationFrame=()=>0;Element.prototype.requestFullscreen=()=>Promise.reject()});
   const game=fs.readdirSync(project).find(file=>file!=='index.html'&&file.endsWith('.html'));
   await page.goto(pathToFileURL(path.join(project,game)).href,{waitUntil:'load',timeout:60000});
-  await page.locator('#play').click();
+  await require('./test-runtime.cjs').startTester(page);
   await page.evaluate(()=>{
    switchLocation('apartment',{fresh:true});gameTime.set(1,9,0);
    window.wardrobeState=()=>({openSide:activeWorld.wardrobe.openSide,progress:activeWorld.wardrobe.leaves.map(leaf=>leaf.progress),positions:activeWorld.wardrobe.leaves.map(leaf=>leaf.root.position.x)});

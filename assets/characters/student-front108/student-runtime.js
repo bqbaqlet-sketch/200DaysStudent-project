@@ -1,7 +1,39 @@
 const FRONT_STUDENT=Object.freeze({id:'student-front-108',characterName:'Илья',arrivalMinute:7*60+43,walkSpeed:1.30,stride:1.36,seat:{tableX:6.65,tableZ:15.51,side:-1}});
+function fitFrontStudentHands(model){
+ const {mesh}=model,geometry=mesh.geometry,positions=geometry.attributes.position,indices=geometry.attributes.skinIndex,weights=geometry.attributes.skinWeight;
+ const relaxed=positions.array.slice(),normals=geometry.attributes.normal;
+ const relaxedNormals=Float32Array.from(normals.array,value=>normals.normalized?value/127:value);
+ for(let i=0;i<positions.count;i++){
+  const x=positions.getX(i),y=positions.getY(i),z=positions.getZ(i),sign=Math.sign(x);
+  if(Math.abs(x)<.40||y<.75||y>1.114)continue;
+  // Use distance along the forearm, so opposite sides of a cuff bend together.
+  // Weighting by X alone twisted its ring into spikes when the wrist turned.
+  const along=(Math.abs(x)-.515)*.613-(y-.99)*.788+(z-.035)*.065;
+  const hand=THREE.MathUtils.smoothstep(along,-.055,.022),elbow=x<0?4:10;
+  indices.setXYZW(i,elbow,elbow+1,0,0);weights.setXYZW(i,1-hand,hand,0,0);
+  const axial=(Math.abs(x)-.515)*.613-(y-.99)*.788;
+  const angle=.55*THREE.MathUtils.smoothstep(z,.075,.12)*THREE.MathUtils.smoothstep(axial,0,.045);
+  if(!angle)continue;
+  // Lift the source model's hanging thumb for desk contact. Keep the original
+  // hand for walking, reaching for the door and pulling the chair.
+  const height=(Math.abs(x)-.515)*.788+(y-.99)*.613,c=Math.cos(angle),s=Math.sin(angle);
+  const delta=(height-.005)*c+(z-.085)*s+.005-height;
+  relaxed[i*3]+=sign*.788*delta;relaxed[i*3+1]+=.613*delta;
+  relaxed[i*3+2]=-(height-.005)*s+(z-.085)*c+.085;
+  const nx=relaxedNormals[i*3],ny=relaxedNormals[i*3+1],nz=relaxedNormals[i*3+2];
+  const normalAlong=sign*.613*nx-.788*ny,normalUp=sign*.788*nx+.613*ny,turnedUp=normalUp*c+nz*s;
+  relaxedNormals[i*3]=sign*(.613*normalAlong+.788*turnedUp);
+  relaxedNormals[i*3+1]=-.788*normalAlong+.613*turnedUp;relaxedNormals[i*3+2]=-normalUp*s+nz*c;
+ }
+ indices.needsUpdate=weights.needsUpdate=true;
+ geometry.morphAttributes.position=[new THREE.Float32BufferAttribute(relaxed,3)];
+ geometry.morphAttributes.normal=[new THREE.Float32BufferAttribute(relaxedNormals,3)];
+ mesh.material.morphTargets=mesh.material.morphNormals=true;mesh.material.needsUpdate=true;mesh.updateMorphTargets();
+ return sitting=>{mesh.morphTargetInfluences[0]=characterEase(THREE.MathUtils.clamp((sitting-.72)/.28,0,1));};
+}
 function sampleFrontStudentIdle(seconds,attention=0){
  const t=((seconds%36)+36)%36,pulse=(a,b)=>characterEase(THREE.MathUtils.clamp(Math.min((t-a)/.65,(b-t)/.65),0,1)),cuff=pulse(15,19),shift=pulse(24,28),tap=pulse(30,33),aside=pulse(8,12),nod=pulse(3,5);
- const hands=[{x:-.12,y:.782,z:.31,flex:.09},{x:.13,y:.782,z:.31,flex:.09}];
+ const hands=[{x:-.15,y:.788,z:.29,flex:.10},{x:.15,y:.788,z:.29,flex:.10}];
  const adjust=[{x:.035,y:.865,z:.285,flex:.14},{x:.145,y:.845,z:.27,flex:.20}];
  for(let i=0;i<2;i++)for(const key of ['x','y','z','flex'])hands[i][key]=THREE.MathUtils.lerp(hands[i][key],adjust[i][key],cuff);
  hands[1].y+=tap*.004*Math.sin(seconds*8);hands[1].z+=tap*.004*Math.sin(seconds*4);
@@ -12,10 +44,11 @@ function sampleFrontStudentIdle(seconds,attention=0){
 function buildFrontStudentModel(){
  const model=buildClassroomCharacter(frontStudentAsset,FRONT_STUDENT.id,frontStudentAsset.joints[0][2][1],FRONT_STUDENT.stride,undefined,{phase:.31,armSwing:.88,bodySway:.78});
  model.root.scale.x=1;model.root.updateMatrixWorld(true);const eyes=buildFrontStudentEyes(model,frontStudentEyes);model.root.scale.x=-1;
+ const poseHands=fitFrontStudentHands(model);
  const basePose=model.pose;let seatedAt=Infinity,attention=0;const animation={mode:'idle',closed:0,look:0};
  model.pose=state=>{
   let sample=state;if(state.sitting>.999&&state.time>=seatedAt){const idle=sampleFrontStudentIdle(state.time-seatedAt,attention);sample={...state,...idle};animation.mode=idle.mode;}else animation.mode=state.walking>.05?'walk':state.grip>.05?'door':state.sitting>0?'sit-down':state.reach>.05?'pull-chair':'idle';
-  basePose(sample);eyes.sample(state.time||0,THREE.MathUtils.clamp((sample.look||0)*1.3,-1,1));animation.closed=eyes.closed;animation.look=sample.look||0;
+  poseHands(sample.sitting||0);basePose(sample);eyes.sample(state.time||0,THREE.MathUtils.clamp((sample.look||0)*1.3,-1,1));animation.closed=eyes.closed;animation.look=sample.look||0;
  };
  model.setSeatedAt=seconds=>seatedAt=seconds;model.setAttention=value=>attention=value;model.eyes=eyes;model.animation=animation;
  model.root.userData={characterId:FRONT_STUDENT.id,characterName:FRONT_STUDENT.characterName,role:'Студент',reference:'image_4d95113c.jpg',locomotion:'retargeted-native-walk'};return model;

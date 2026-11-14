@@ -7,7 +7,7 @@ const project=path.resolve(__dirname,'..'),out=path.join(__dirname,'students108-
   const page=await browser.newPage({viewport:{width:1240,height:700}}),errors=[];page.on('pageerror',e=>errors.push(e.message));
   await page.route('https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js',r=>r.fulfill({path:require.resolve('three/build/three.min.js'),contentType:'application/javascript'}));
   await page.addInitScript(()=>{window.requestAnimationFrame=()=>0;Element.prototype.requestFullscreen=()=>Promise.reject()});
-  await page.goto(pathToFileURL(path.join(project,fs.readdirSync(project).find(f=>f!=='index.html'&&f.endsWith('.html')))).href,{waitUntil:'load',timeout:60000});await page.locator('#play').click();
+  await page.goto(pathToFileURL(path.join(project,fs.readdirSync(project).find(f=>f!=='index.html'&&f.endsWith('.html')))).href,{waitUntil:'load',timeout:60000});await require('./test-runtime.cjs').startTester(page);
   const report=await page.evaluate(()=>{
    switchLocation('college1',{fresh:true});const world=activeWorld,students=[world.student108,world.alexey108,world.sanya108],door=world.interactiveClassroomDoors.find(d=>d.number==='108');
    const far={x:999,z:999,feet:0},start=(7*60+27)*REAL_MS_PER_GAME_MINUTE,end=8*60*REAL_MS_PER_GAME_MINUTE;

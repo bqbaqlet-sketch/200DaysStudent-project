@@ -4,7 +4,7 @@ const game = fs.readdirSync(root).find(name => name !== 'index.html' && name.end
 if (!game) throw Error('Game HTML is missing');
 const port = Number(process.env.PORT || 8000);
 if (!Number.isInteger(port) || port < 1 || port > 65535) throw Error('Invalid PORT');
-const types = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.json': 'application/json', '.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.glb': 'model/gltf-binary', '.wav': 'audio/wav', '.mp4': 'video/mp4', '.md': 'text/plain; charset=utf-8', '.txt': 'text/plain; charset=utf-8' };
+const types = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.json': 'application/json', '.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.webp': 'image/webp', '.glb': 'model/gltf-binary', '.wav': 'audio/wav', '.mp3': 'audio/mpeg', '.mp4': 'video/mp4', '.md': 'text/plain; charset=utf-8', '.txt': 'text/plain; charset=utf-8' };
 http.createServer((request, response) => {
   let requested;
   try { requested = decodeURIComponent(new URL(request.url, 'http://localhost').pathname); }

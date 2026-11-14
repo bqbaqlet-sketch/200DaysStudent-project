@@ -87,7 +87,7 @@
      g.fillStyle=palette[0];g.fillRect(w/2-15,h*.54-55,30,110);g.fillRect(w/2-55,h*.54-15,110,30);
     }else{
      g.fillStyle='#9e455d';g.beginPath();g.moveTo(w/2,h*.54+43);g.bezierCurveTo(w/2-100,h*.54-12,w/2-53,h*.54-80,w/2,h*.54-35);g.bezierCurveTo(w/2+53,h*.54-80,w/2+100,h*.54-12,w/2,h*.54+43);g.fill();
-     g.fillStyle='#3b7197';g.font='bold 20px Arial';g.fillText('ДОСБОЛ LIKE',w/2,h*.54+82);
+     g.fillStyle='#3b7197';g.font='bold 20px Arial';g.fillText('БУДЬ ДРУГОМ',w/2,h*.54+82);
     }
     for(let row=0;row<4;row++)for(const side of [-1,1]){
      const x=side<0?72:w-445,y=98+row*126,bw=373,bh=108;
@@ -106,8 +106,8 @@
     panel(0,1.98,-.038,width-.06,1.44,new THREE.MeshBasicMaterial({map:tx}),Math.PI);
    });mark('corridorNoticeBoard',u,v,width,.08,{title,wing:'continuation'});
   }
-  for(const [u,w,title,theme] of [[5.5,3.4,'ҚАУІПСІЗ ОРТА','friendship'],[13.4,3.6,'ДОСБОЛ LIKE','friendship'],[18.1,3.8,'АДАЛ АЗАМАТ','friendship'],[22.7,2.4,'ДЕНСАУЛЫҚ','health']])corridorBoard(u,9.635,w,title,theme,Math.PI);
-  for(const [u,w,title,theme] of [[10.7,2.5,'ДЕНСАУЛЫҚ','health'],[18.6,3.8,'ДОСБОЛ LIKE','friendship'],[22,1.7,'ҚАУІПСІЗДІК','friendship']])corridorBoard(u,12.065,w,title,theme,0);
+  for(const [u,w,title,theme] of [[5.5,3.4,'БЕЗОПАСНАЯ СРЕДА','friendship'],[13.4,3.6,'БУДЬ ДРУГОМ','friendship'],[18.1,3.8,'ЧЕСТНЫЙ ГРАЖДАНИН','friendship'],[22.7,2.4,'ЗДОРОВЬЕ','health']])corridorBoard(u,9.635,w,title,theme,Math.PI);
+  for(const [u,w,title,theme] of [[10.7,2.5,'ЗДОРОВЬЕ','health'],[18.6,3.8,'БУДЬ ДРУГОМ','friendship'],[22,1.7,'БЕЗОПАСНОСТЬ','friendship']])corridorBoard(u,12.065,w,title,theme,0);
 
   // На снимках кабинеты со сплошным стеклом в одной створке; у 101 — боковая вставка.
   const extensionFrost=material(0x8f9a92,null,{shininess:45});
@@ -153,7 +153,7 @@
    }
    panel(0,2.78,-.057,1.71,.67,outside,Math.PI);
    box(-.022,2.43,-.085,.022,3.12,-.04,p.frame);
-   label('ШЫҒУ · ВЫХОД',0,3.24,-.09,.78,.18,'#4c8398','#ffffff',Math.PI);
+   label('ВЫХОД',0,3.24,-.09,.78,.18,'#4c8398','#ffffff',Math.PI);
    add(rodGeo,p.red,-1.02,1.16,-.1,.095,.52,.095);
    rod([-1.02,1.42,-.1],[-.94,1.52,-.1],.016,p.iron);
    label('←',-1.02,1.63,-.13,.2,.18,'#4f805b','#fff',Math.PI);

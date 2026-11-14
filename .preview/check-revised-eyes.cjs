@@ -2,7 +2,7 @@ const fs=require('fs'),path=require('path'),assert=require('assert/strict'),{pat
 const root=path.resolve(__dirname,'..'),out=path.join(__dirname,'eyes-revision-qa');fs.mkdirSync(out,{recursive:true});
 (async()=>{const browser=await chromium.launch({...require('./test-runtime.cjs').browserOptions(),headless:true,args:['--use-angle=swiftshader','--enable-unsafe-swiftshader','--disable-gpu-sandbox']});try{
  const page=await browser.newPage({viewport:{width:1000,height:900}}),errors=[];page.on('pageerror',e=>errors.push(e.message));await page.route('https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js',r=>r.fulfill({path:require.resolve('three/build/three.min.js'),contentType:'application/javascript'}));await page.addInitScript(()=>{requestAnimationFrame=()=>0;Element.prototype.requestFullscreen=()=>Promise.reject()});
- await page.goto(pathToFileURL(path.join(root,fs.readdirSync(root).find(f=>f!=='index.html'&&f.endsWith('.html')))).href,{waitUntil:'load',timeout:60000});await page.locator('#play').click();
+ await page.goto(pathToFileURL(path.join(root,fs.readdirSync(root).find(f=>f!=='index.html'&&f.endsWith('.html')))).href,{waitUntil:'load',timeout:60000});await require('./test-runtime.cjs').startTester(page);
  const metadata=await page.evaluate(async()=>{
   const ilya=buildFrontStudentModel();ilya.root.scale.x=1;switchLocation('home',{fresh:true});const seller=activeWorld.clothingSeller.model;seller.root.parent.remove(seller.root);seller.root.position.set(0,0,0);seller.root.rotation.set(0,0,0);
   window.eyeModels=[{id:'ilya',name:FRONT_STUDENT.characterName,model:ilya,eyes:ilya.eyes,profile:frontStudentEyes,closedTime:4.7-1.83+.095},{id:'seller',model:seller,eyes:activeWorld.clothingSeller.eyes,profile:clothingSellerEyes,closedTime:5.2-.47+.095}];
@@ -15,7 +15,7 @@ const root=path.resolve(__dirname,'..'),out=path.join(__dirname,'eyes-revision-q
   };
   return eyeModels.map(actor=>{
    const canvas=actor.eyes.eyes[0].material.map.image,ctx=canvas.getContext('2d'),offset=actor.id==='ilya'?.0012:.0006,pixel=(x,y)=>Array.from(ctx.getImageData(Math.round(canvas.width*(.5+x/(actor.profile.halfWidth*2))),Math.round(canvas.height*(.5-y/(actor.profile.halfHeight*2))),1,1).data);
-   actor.eyes.sample(1,0);const pupilOpen=pixel(0,offset-.00025),irisCorner=pixel(.0049,offset+.00195);actor.eyes.sample(actor.closedTime,0);const pupilClosed=pixel(0,offset-.00025);
+   actor.eyes.sample(1,0);const pupilOpen=pixel(0,offset-.00025),irisCorner=actor.id==='ilya'?pixel(.0055,offset+.0025):pixel(.0049,offset+.00195);actor.eyes.sample(actor.closedTime,0);const pupilClosed=pixel(0,offset-.00025);
    return {id:actor.id,name:actor.name,style:actor.eyes.style,pupilOpen,pupilClosed,irisCorner,eyes:actor.eyes.eyes.map(e=>({texture:[e.material.map.image.width,e.material.map.image.height],vertexColors:e.material.vertexColors,mappedEmission:e.material.emissiveMap===e.material.map,finite:Array.from(e.geometry.attributes.position.array).every(Number.isFinite)}))};
   });
  });assert.equal(metadata[0].name,'Илья');

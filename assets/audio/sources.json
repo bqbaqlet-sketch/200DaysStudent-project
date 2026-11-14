@@ -1,0 +1,331 @@
+{
+  "retrieved": "2026-11-14",
+  "licenseURL": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "sets": [
+    {
+      "author": "Kenney",
+      "license": "CC0-1.0",
+      "source": "https://kenney.nl/assets/impact-sounds",
+      "mirror": "https://github.com/Mcamento8/open-game-sfx-index",
+      "files": [
+        "footstep_concrete_000.ogg",
+        "footstep_concrete_001.ogg",
+        "footstep_concrete_002.ogg",
+        "footstep_concrete_003.ogg",
+        "footstep_wood_000.ogg",
+        "footstep_wood_001.ogg",
+        "footstep_wood_002.ogg",
+        "footstep_wood_003.ogg"
+      ],
+      "changes": "Four concrete and wood variants retained unchanged for interiors; outdoor variants replaced by field recordings."
+    },
+    {
+      "author": "Kenney",
+      "license": "CC0-1.0",
+      "source": "https://kenney.nl/assets/rpg-audio",
+      "mirror": "https://github.com/Mcamento8/open-game-sfx-index",
+      "files": [
+        "creak1.ogg",
+        "creak2.ogg",
+        "doorClose_1.ogg",
+        "doorOpen_1.ogg"
+      ],
+      "changes": "Original OGG unchanged."
+    },
+    {
+      "author": "Kenney",
+      "license": "CC0-1.0",
+      "source": "https://kenney.nl/assets/ui-audio",
+      "mirror": "https://github.com/Mcamento8/open-game-sfx-index",
+      "files": [
+        "click1.ogg",
+        "click2.ogg"
+      ],
+      "changes": "Original OGG unchanged."
+    },
+    {
+      "author": "laleksic",
+      "license": "CC0-1.0",
+      "source": "https://opengameart.org/content/various-sound-effects",
+      "download": "https://opengameart.org/sites/default/files/sounds_8.zip",
+      "files": [
+        "carousel.mp3",
+        "door-open.mp3",
+        "door-close.mp3",
+        "wardrobe.mp3",
+        "college-bell.mp3",
+        "cloth.mp3",
+        "chair.mp3",
+        "water.mp3"
+      ],
+      "changes": "Trimmed general foley; mono 22.05 kHz, 64 kbps MP3, short fades."
+    },
+    {
+      "author": "Spring (Spring Spring); public-domain birds by isaiah658, syncopika and pauliuw",
+      "license": "CC0-1.0",
+      "source": "https://opengameart.org/node/93987",
+      "download": "https://opengameart.org/sites/default/files/Birds%20and%20Wind%20-%20Ambient_1.ogg",
+      "files": [
+        "nature.mp3"
+      ],
+      "changes": "26-second excerpt from 00:04; mono, filtered and compressed."
+    },
+    {
+      "author": "LEGIT Audio",
+      "license": "CC0-1.0",
+      "source": "https://opengameart.org/content/the-shop",
+      "download": "https://opengameart.org/sites/default/files/legit_audio_-_the_shop_free_sfx_mp3.zip",
+      "files": [
+        "room-tone.mp3"
+      ],
+      "changes": "12-second filtered excerpt of free convenience-store room tone; mono compressed."
+    },
+    {
+      "author": "SFXMint",
+      "license": "CC0-1.0",
+      "source": "https://sfxmint.com/sounds/bus-engine-02",
+      "download": "https://sfxmint.com/dl/bus-engine-02.mp3",
+      "files": [
+        "bus-engine.mp3"
+      ],
+      "changes": "2.8-second excerpt, filtered and compressed; original creator describes sound as AI-generated."
+    },
+    {
+      "author": "Joseph SARDIN / BigSoundBank",
+      "license": "CC0-1.0",
+      "source": "https://bigsoundbank.com/footsteps-shoe-on-concrete-s0514.html",
+      "download": "https://bigsoundbank.com/UPLOAD/mp3/0514.mp3",
+      "files": [
+        "footstep_street_000.ogg",
+        "footstep_street_001.ogg",
+        "footstep_street_002.ogg",
+        "footstep_street_003.ogg"
+      ],
+      "changes": "Four separate 0.34-second recorded shoe impacts; 85 Hz high-pass, 4.2 kHz low-pass, matched peak level, 4 ms attack/45 ms tail fades, mono 22.05 kHz Vorbis.",
+      "cuts": [
+        {
+          "file": "footstep_street_000.ogg",
+          "start": 0.36403628117913833,
+          "duration": 0.34
+        },
+        {
+          "file": "footstep_street_001.ogg",
+          "start": 1.0624489795918368,
+          "duration": 0.34
+        },
+        {
+          "file": "footstep_street_002.ogg",
+          "start": 7.4878458049886625,
+          "duration": 0.34
+        },
+        {
+          "file": "footstep_street_003.ogg",
+          "start": 8.94453514739229,
+          "duration": 0.34
+        }
+      ]
+    },
+    {
+      "author": "Joseph SARDIN / BigSoundBank",
+      "license": "CC0-1.0",
+      "source": "https://bigsoundbank.com/courir-dans-l-herbe-haute-s1843.html",
+      "download": "https://bigsoundbank.com/UPLOAD/mp3/1843.mp3",
+      "files": [
+        "footstep_grass_000.ogg",
+        "footstep_grass_001.ogg",
+        "footstep_grass_002.ogg",
+        "footstep_grass_003.ogg"
+      ],
+      "changes": "Four separate 0.34-second recorded shoe impacts; 85 Hz high-pass, 4.2 kHz low-pass, matched peak level, 4 ms attack/45 ms tail fades, mono 22.05 kHz Vorbis.",
+      "cuts": [
+        {
+          "file": "footstep_grass_000.ogg",
+          "start": 4.424807256235828,
+          "duration": 0.34
+        },
+        {
+          "file": "footstep_grass_001.ogg",
+          "start": 5.113242630385487,
+          "duration": 0.34
+        },
+        {
+          "file": "footstep_grass_002.ogg",
+          "start": 15.260181405895691,
+          "duration": 0.34
+        },
+        {
+          "file": "footstep_grass_003.ogg",
+          "start": 18.602585034013604,
+          "duration": 0.34
+        }
+      ]
+    }
+  ],
+  "files": [
+    {
+      "file": "bus-engine.mp3",
+      "bytes": 23239,
+      "sha256": "c11066e4e1e73424dee3ccdd45fff1195bcca4c48907d333c074af8ec3ee56ce"
+    },
+    {
+      "file": "carousel.mp3",
+      "bytes": 11954,
+      "sha256": "98d324d783c694b6cbfb5a5f1f42bbddb2210bd928d3767684cd825a1e0b0fbd"
+    },
+    {
+      "file": "chair.mp3",
+      "bytes": 7984,
+      "sha256": "dc1868eb2c7d3c1197c99035629c08b5ad1c28227d2ab2d52a20b922261abdb2"
+    },
+    {
+      "file": "click1.ogg",
+      "bytes": 4983,
+      "sha256": "59175ac17cd49a68dd736285738441287636112a84a6f7ce0d89921bda5a5360"
+    },
+    {
+      "file": "click2.ogg",
+      "bytes": 4656,
+      "sha256": "c394b46bc6737f7f7edfbfa3031ce621b7a43d498d456d6198364eee9cd3e306"
+    },
+    {
+      "file": "cloth.mp3",
+      "bytes": 6312,
+      "sha256": "b4f5fa791ee22288b1b7c679041dec2f6969aa97663057a880a30a6f3909fb1d"
+    },
+    {
+      "file": "college-bell.mp3",
+      "bytes": 18433,
+      "sha256": "04e4878352cd334821b7a69446e5a7a073efeff24a5951a54486d9bcbba97eb4"
+    },
+    {
+      "file": "creak1.ogg",
+      "bytes": 15761,
+      "sha256": "8a346186fd297254248cab8e8117060a52a5cf2a84f603153a762108550ea95e"
+    },
+    {
+      "file": "creak2.ogg",
+      "bytes": 19012,
+      "sha256": "8a990afdc03aebb91d528f5385e2f95582dbfa8e2c12c71098ab01be9142294a"
+    },
+    {
+      "file": "door-close.mp3",
+      "bytes": 6103,
+      "sha256": "f522a7cfeb91c5c98c14f97d0316a54daff0f33b1784cf2812b47bb4177881fb"
+    },
+    {
+      "file": "door-open.mp3",
+      "bytes": 7148,
+      "sha256": "3f335876dd0286e22c29e29bdb1459084bb137190e171650210537bf3f4aa33b"
+    },
+    {
+      "file": "doorClose_1.ogg",
+      "bytes": 18564,
+      "sha256": "834d29c60a8a8bfb50b158cdb6b7dfa8f02812a408a1ee9703d038dfab0b1aeb"
+    },
+    {
+      "file": "doorOpen_1.ogg",
+      "bytes": 22848,
+      "sha256": "4ab93bab96522d8eb109ff96dc57cb6765deb02448fe14c10472084be5bb2a0b"
+    },
+    {
+      "file": "footstep_concrete_000.ogg",
+      "bytes": 5808,
+      "sha256": "d7267e183067757c92c169de2a379abea592cfca6b39bb2e8feea15221ad79fe"
+    },
+    {
+      "file": "footstep_concrete_001.ogg",
+      "bytes": 6308,
+      "sha256": "507a75eb19b897087855a3be3cf11a12d7fa37d143ad535eeebe0b8031c7325d"
+    },
+    {
+      "file": "footstep_concrete_002.ogg",
+      "bytes": 6255,
+      "sha256": "b21fa546d74941196b25da8a20b7010abd8c05c4fcf93545d1f344e66a664e13"
+    },
+    {
+      "file": "footstep_concrete_003.ogg",
+      "bytes": 5805,
+      "sha256": "8b513c2f0316324060b9174b8f28df6c2147418c506e6a53b77f18e149a5547b"
+    },
+    {
+      "file": "footstep_grass_000.ogg",
+      "bytes": 5870,
+      "sha256": "1e7d841b203ba069be7ff0208ae7f74c18df3b60a9b06c50388c8d691cb95bd2"
+    },
+    {
+      "file": "footstep_grass_001.ogg",
+      "bytes": 5718,
+      "sha256": "f9b02cb9df191b9c37797343d061489f95d394828ab67ada7e0e48bf8e97ad95"
+    },
+    {
+      "file": "footstep_grass_002.ogg",
+      "bytes": 5843,
+      "sha256": "3bfa86ab46a934512e728b15cb13b9e5b5c0f1fd1cf332528fe9e641a14267c3"
+    },
+    {
+      "file": "footstep_grass_003.ogg",
+      "bytes": 6116,
+      "sha256": "c74a616b5f986c43954e1d3c986baade9a8c30f2d8f1cdf37ebb1565760192d9"
+    },
+    {
+      "file": "footstep_street_000.ogg",
+      "bytes": 5911,
+      "sha256": "f76b08da29a5225ffe185a7edf4c7b9b816b45a4101a0cc6f1fc2f4eb08115b8"
+    },
+    {
+      "file": "footstep_street_001.ogg",
+      "bytes": 5898,
+      "sha256": "c172bbd5b690b40988bb4861f43245f513acc72fd343fc793d3dc484e3168fa0"
+    },
+    {
+      "file": "footstep_street_002.ogg",
+      "bytes": 5879,
+      "sha256": "4b5a4922f59d332a983c469a455e3e49bf476b64faee62cbca461962fb834a0f"
+    },
+    {
+      "file": "footstep_street_003.ogg",
+      "bytes": 6029,
+      "sha256": "5c308e3111bbd3fff5e9ee7ca69d486cf4c6baff68751b0cbe5f8df267ec15a5"
+    },
+    {
+      "file": "footstep_wood_000.ogg",
+      "bytes": 5949,
+      "sha256": "5f1c252942a220d658121bd9417448cd19649ded9fff2ff15f6e50899373ce8e"
+    },
+    {
+      "file": "footstep_wood_001.ogg",
+      "bytes": 5929,
+      "sha256": "e4f68e1c9fd55b4dc8ca89ed2bbab6f200171bc54bdc18aa96b80d8e7336f462"
+    },
+    {
+      "file": "footstep_wood_002.ogg",
+      "bytes": 5895,
+      "sha256": "9ff095b05cee5eec40b081defe3f0eef7232bb16d4865ce03b9f6dbab875cfdd"
+    },
+    {
+      "file": "footstep_wood_003.ogg",
+      "bytes": 6207,
+      "sha256": "2a68a083daa9eda08fed0ea5da5280dfbe0de226196c576be02f95259dd139d9"
+    },
+    {
+      "file": "nature.mp3",
+      "bytes": 208813,
+      "sha256": "e8c0f43639afb2077d69d0e477bf0d9c029a6b7529b31e62afce931e4f670e49"
+    },
+    {
+      "file": "room-tone.mp3",
+      "bytes": 44686,
+      "sha256": "4c465bb2d4d928b6b874960bb8b08cf9c0d1f017601330ef34d1862cc7740f71"
+    },
+    {
+      "file": "wardrobe.mp3",
+      "bytes": 7148,
+      "sha256": "e0e5ba992cb6a8bb0d8d6f5a655750751a5d865982782767af7aca3c9b40381f"
+    },
+    {
+      "file": "water.mp3",
+      "bytes": 24702,
+      "sha256": "89cda7fcf8920494fd12ebeac96944b0cefe6446d7008bc814958e9a4082a931"
+    }
+  ]
+}

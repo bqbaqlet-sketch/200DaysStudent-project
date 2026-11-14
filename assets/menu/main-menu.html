@@ -1,0 +1,41 @@
+<!-- BEGIN MAIN_MENU_UI -->
+<div id="studioIntro" aria-label="ATM4 — команда разработчиков"><img id="studioLogo" src="assets/menu/atm4-logo.jpg" alt="ATM4"></div>
+<main id="start" class="ov mainMenu" aria-label="Главное меню">
+ <div class="menuShade" aria-hidden="true"></div>
+ <div class="menuContent">
+  <header class="menuBrand"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M19 10h32v45H19zM13 17h12m-12 9h12m-12 9h12m-12 9h12m5-24h14m-14 9h14m-14 9h14"/></svg><h1>200Days<span>Student</span></h1><div class="brandRule"></div></header>
+  <nav class="menuActions" aria-label="Режимы и разделы">
+   <button id="play" class="menuAction primary"><span class="menuLabel">Играть</span><small>Начать историю</small></button>
+   <button id="testerMode" class="menuAction"><span class="menuLabel">Режим тестера</span><small>Полёт · время · локации</small></button>
+   <button id="menuSupport" class="menuAction"><span class="menuLabel">Поддержка</span></button>
+   <button id="menuSettings" class="menuAction"><span class="menuLabel">Настройки</span></button>
+   <button id="menuAdvertising" class="menuAction"><span class="menuLabel">Реклама</span></button>
+   <button id="menuDonation" class="menuAction"><span class="menuLabel">Пожертвование</span></button>
+  </nav>
+ </div>
+  <button id="menuSound" type="button" aria-label="Выключить музыку меню"><span aria-hidden="true">♫</span><span id="menuSoundLabel">Музыка меню</span></button>
+</main>
+<div id="menuPanel" hidden>
+ <section class="menuDialog" role="dialog" aria-modal="true" aria-labelledby="menuPanelTitle">
+  <div class="menuDialogHeading"><h2 id="menuPanelTitle">Настройки</h2><button id="menuPanelClose" type="button" aria-label="Закрыть">×</button></div>
+  <div data-menu-panel="settings" hidden>
+   <label class="musicSetting" for="menuMusicVolume"><span>Музыка меню</span><output id="menuMusicValue" for="menuMusicVolume">35%</output></label>
+   <input id="menuMusicVolume" type="range" min="0" max="100" step="1" value="35" aria-label="Громкость музыки меню">
+    <label class="musicSetting" for="gameEffectsVolume"><span>Звуковые эффекты</span><output id="gameEffectsVolumeValue" for="gameEffectsVolume">65%</output></label>
+    <input id="gameEffectsVolume" type="range" min="0" max="100" step="1" value="65" aria-label="Громкость звуковых эффектов">
+    <label class="musicSetting" for="gameAmbienceVolume"><span>Окружение</span><output id="gameAmbienceVolumeValue" for="gameAmbienceVolume">45%</output></label>
+    <input id="gameAmbienceVolume" type="range" min="0" max="100" step="1" value="45" aria-label="Громкость окружения">
+   <p class="menuHelp">Музыка включается автоматически. Каждый ползунок регулируется отдельно; ноль отключает выбранную группу звуков.</p>
+   <p class="musicCredit">Main Theme — Curious Explorers Theme · Treblo</p>
+  </div>
+  <div data-menu-panel="support" hidden><p>Нашёл ошибку или хочешь поделиться идеей?</p><a class="dialogAction" href="https://github.com/bqbaqlet-sketch/200DaysStudent-project/issues/new" target="_blank" rel="noopener noreferrer">Сообщить команде</a><p class="menuHelp">В игре: WASD — движение, мышь — обзор, E — взаимодействие. На телефоне двигайся слева, осматривайся справа.</p></div>
+  <div data-menu-panel="advertising" hidden><p>Рекламные предложения появятся здесь позже.</p></div>
+  <div data-menu-panel="donation" hidden><p>Спасибо, что хочешь поддержать 200DaysStudent.</p><p class="menuHelp">Способы пожертвования появятся здесь позже.</p></div>
+  <div data-menu-panel="pause" hidden><button id="resumeGame" class="dialogAction">Продолжить</button><button id="pauseSettings" class="dialogAction">Настройки</button><button id="returnMainMenu" class="dialogAction">В главное меню</button><p class="menuHelp">Прогресс текущего прохождения пока не сохраняется.</p></div>
+  <div data-menu-panel="chapter" hidden><p class="chapterNumber">ГЛАВА 1</p><h3>Первое утро</h3><p>Новый день начинается дома. Переоденься в форму и доберись до колледжа к началу занятий.</p><button id="beginChapter" class="dialogAction">Начать день</button></div>
+ </section>
+</div>
+<button id="gameMenu" class="fb" type="button" aria-label="Открыть меню паузы">Меню</button>
+<div id="storyObjective" role="status" hidden><span>ПЕРВОЕ УТРО</span><p id="storyObjectiveText"></p></div>
+<audio id="menuMusic" src="assets/menu/main-theme.mp3" preload="auto" loop playsinline></audio>
+<!-- END MAIN_MENU_UI -->

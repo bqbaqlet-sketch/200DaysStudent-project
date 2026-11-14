@@ -8,7 +8,7 @@ const project=path.resolve(__dirname,'..'),manifest=require('../assets/voices/di
   await page.route('https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js',r=>r.fulfill({path:require.resolve('three/build/three.min.js'),contentType:'application/javascript'}));
   await page.addInitScript(()=>{requestAnimationFrame=()=>0;Element.prototype.requestFullscreen=()=>Promise.reject()});
   const game=fs.readdirSync(project).find(f=>f!=='index.html'&&f.endsWith('.html'));
-  await page.goto(pathToFileURL(path.join(project,game)).href,{waitUntil:'load',timeout:60000});await page.locator('#play').click();
+  await page.goto(pathToFileURL(path.join(project,game)).href,{waitUntil:'load',timeout:60000});await require('./test-runtime.cjs').startTester(page);
   const recordings=await page.evaluate(async()=>{
    const context=new AudioContext(),rows=[];
    for(const [character,dialogue] of [['medvedev',medvedevDialogue],['larisa',director110Dialogue]])for(const [id,line] of Object.entries(dialogue)){

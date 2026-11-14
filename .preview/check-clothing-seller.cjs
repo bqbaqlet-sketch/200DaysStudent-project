@@ -3,7 +3,7 @@ const root=path.resolve(__dirname,'..'),out=path.join(__dirname,'clothing-seller
 (async()=>{const browser=await chromium.launch({...require('./test-runtime.cjs').browserOptions(),headless:true,args:['--use-angle=swiftshader','--enable-unsafe-swiftshader','--disable-gpu-sandbox']});try{
  const page=await browser.newPage({viewport:{width:1240,height:800}}),errors=[];page.on('pageerror',e=>errors.push(e.message));
  await page.route('https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js',r=>r.fulfill({path:require.resolve('three/build/three.min.js'),contentType:'application/javascript'}));await page.addInitScript(()=>{requestAnimationFrame=()=>0;Element.prototype.requestFullscreen=()=>Promise.reject()});
- await page.goto(pathToFileURL(path.join(root,fs.readdirSync(root).find(n=>n!=='index.html'&&n.endsWith('.html')))).href,{waitUntil:'load',timeout:60000});await page.locator('#play').click();
+ await page.goto(pathToFileURL(path.join(root,fs.readdirSync(root).find(n=>n!=='index.html'&&n.endsWith('.html')))).href,{waitUntil:'load',timeout:60000});await require('./test-runtime.cjs').startTester(page);
  const report=await page.evaluate(()=>{
   switchLocation('home',{fresh:true});window.seller=activeWorld.clothingSeller;const world=activeWorld,far={x:999,z:999,feet:0};
   window.sellerTime=(day,minute,seconds=0,sync=true)=>{clockElapsedMs=((day-1)*1440+minute)*REAL_MS_PER_GAME_MINUTE+seconds*1000;world.updateCharacters(far,sync);publishGameClock();applyGameLighting(world);};

@@ -164,7 +164,7 @@
     for(const x of [-.88,0,.88])box(x-.03,0,-.065,x+.03,3.15,.035,p.frame);
     for(const side of [-1,1])for(const [a,b] of [[.18,.8],[.93,2.2]])box(side*.44-.34,a,-.07,side*.44+.34,b,-.055,p.oak);
     panel(0,2.75,-.054,1.71,.7,outside,Math.PI);box(-.91,3.1,-.065,.91,3.16,.035,p.frame);
-    label('ШЫҒУ · ВЫХОД',0,3.24,-.075,.75,.17,'#4c8398','#fff',Math.PI);
+    label('ВЫХОД',0,3.24,-.075,.75,.17,'#4c8398','#fff',Math.PI);
     add(rodGeo,p.red,-1.04,1.24,-.08,.084,.48,.084);
    });upperMark('upperRightEndDoor',30.68,10.85,.16,1.82,{closed:true});
    upperMark('upperRightCorridor',15.45,10.85,30.5,2.5,{classrooms:8,openDoors:0});
@@ -298,7 +298,7 @@
    // Открытый проход в общий лестничный холл, соединённый с первым этажом.
    for(const u of [-30.05,-28.55])box(u-.035,0,-1.68,u+.035,2.72,-1.43,p.oak);
    box(-30.085,2.67,-1.68,-28.515,2.74,-1.43,p.oak);
-   label('ШЫҒУ · ВЫХОД',-29.3,2.9,-1.65,.72,.17,'#4c8398','#fff',Math.PI);
+   label('ВЫХОД',-29.3,2.9,-1.65,.72,.17,'#4c8398','#fff',Math.PI);
    upperMark('upperLeftFarStairPassage',-29.3,-1.6,1.5,.2,{open:true,stairInteriorDeferred:false});
    upperMark('upperLeftCorridor',-14.2,-2.85,33,2.5,{classrooms:10,closedDoors:10,crossBeams:2});
   }finally{pose=upperSavedPose}

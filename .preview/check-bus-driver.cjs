@@ -10,7 +10,7 @@ fs.mkdirSync(out,{recursive:true});
   await page.route('https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js',r=>r.fulfill({path:require.resolve('three/build/three.min.js'),contentType:'application/javascript'}));
   await page.addInitScript(()=>{window.requestAnimationFrame=()=>0;Element.prototype.requestFullscreen=()=>Promise.reject()});
   await page.goto(pathToFileURL(path.join(project,fs.readdirSync(project).find(f => f !== 'index.html' && f.endsWith('.html')))).href,{waitUntil:'load',timeout:60000});
-  await page.locator('#play').click();
+  await require('./test-runtime.cjs').startTester(page);
   const report=await page.evaluate(()=>{
    const college=busTransit.fleet.get('college'),actor=college.driver.root,model=actor.getObjectByName('bus-driver-imported-mesh');
    const report={triangles:model.geometry.index.count/3,bones:model.skeleton.bones.length,steeringMeshes:college.steering.children.length,weightsNormalized:true};

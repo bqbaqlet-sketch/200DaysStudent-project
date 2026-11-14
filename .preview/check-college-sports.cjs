@@ -8,7 +8,7 @@ const project=path.resolve(__dirname,'..'),out=path.join(__dirname,'sports-court
   await page.route('https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js',r=>r.fulfill({path:require.resolve('three/build/three.min.js'),contentType:'application/javascript'}));
   await page.addInitScript(()=>{window.requestAnimationFrame=()=>0;Element.prototype.requestFullscreen=()=>Promise.reject()});
   const main=path.join(project,fs.readdirSync(project).find(f=>f!=='index.html'&&f.endsWith('.html')));
-  await page.goto(pathToFileURL(main).href,{waitUntil:'load',timeout:60000});await page.locator('#play').click();
+  await page.goto(pathToFileURL(main).href,{waitUntil:'load',timeout:60000});await require('./test-runtime.cjs').startTester(page);
   const report=await page.evaluate(()=>{
    gameTime.set(1,7,38);const root=collegeSportsCourtyard,blocked=(x,z)=>hit(x,z,0);
    const walk=points=>{for(let i=1;i<points.length;i++){const [x,z]=points[i-1],[xx,zz]=points[i],n=Math.ceil(Math.hypot(xx-x,zz-z)/.04);for(let j=0;j<=n;j++){const px=x+(xx-x)*j/n,pz=z+(zz-z)*j/n;if(blocked(px,pz))return {clear:false,blockedAt:[px,pz]};}}return {clear:true};};

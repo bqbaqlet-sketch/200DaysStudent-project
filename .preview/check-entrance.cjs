@@ -6,7 +6,7 @@ const project=path.resolve(__dirname,'..'),before=process.argv.includes('--befor
  await page.route('https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js',route=>route.fulfill({path:require.resolve('three/build/three.min.js'),contentType:'application/javascript'}));
  await page.addInitScript(()=>{requestAnimationFrame=()=>0;Element.prototype.requestFullscreen=()=>Promise.reject()});
  const game=fs.readdirSync(project).find(file=>file!=='index.html'&&file.endsWith('.html'));
- await page.goto(pathToFileURL(path.join(project,game)).href,{waitUntil:'load',timeout:60000});await page.locator('#play').click();
+ await page.goto(pathToFileURL(path.join(project,game)).href,{waitUntil:'load',timeout:60000});await require('./test-runtime.cjs').startTester(page);
  const initial=await page.evaluate(()=>{
   switchLocation('entrance4',{fresh:true});feetY=0;gameTime.set(1,9,0);
   window.drawEntrance=(eye,target)=>{if(eye){C.position.set(...eye);C.lookAt(...target);yaw=C.rotation.y;pitch=C.rotation.x;}C.rotation.set(pitch,yaw,0);hud.textContent=zone(C.position.x,C.position.z);updateInteraction(performance.now());applyGameLighting(activeWorld);R.render(activeWorld.scene,C)};

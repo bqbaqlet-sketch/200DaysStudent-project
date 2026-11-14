@@ -992,7 +992,7 @@ function buildCollegeEntranceInterior(){
      g.fillStyle=palette[0];g.fillRect(w/2-15,h*.54-55,30,110);g.fillRect(w/2-55,h*.54-15,110,30);
     }else{
      g.fillStyle='#9e455d';g.beginPath();g.moveTo(w/2,h*.54+43);g.bezierCurveTo(w/2-100,h*.54-12,w/2-53,h*.54-80,w/2,h*.54-35);g.bezierCurveTo(w/2+53,h*.54-80,w/2+100,h*.54-12,w/2,h*.54+43);g.fill();
-     g.fillStyle='#3b7197';g.font='bold 20px Arial';g.fillText('ДОСБОЛ LIKE',w/2,h*.54+82);
+     g.fillStyle='#3b7197';g.font='bold 20px Arial';g.fillText('БУДЬ ДРУГОМ',w/2,h*.54+82);
     }
     for(let row=0;row<4;row++)for(const side of [-1,1]){
      const x=side<0?72:w-445,y=98+row*126,bw=373,bh=108;
@@ -1011,8 +1011,8 @@ function buildCollegeEntranceInterior(){
     panel(0,1.98,-.038,width-.06,1.44,new THREE.MeshBasicMaterial({map:tx}),Math.PI);
    });mark('corridorNoticeBoard',u,v,width,.08,{title,wing:'continuation'});
   }
-  for(const [u,w,title,theme] of [[5.5,3.4,'ҚАУІПСІЗ ОРТА','friendship'],[13.4,3.6,'ДОСБОЛ LIKE','friendship'],[18.1,3.8,'АДАЛ АЗАМАТ','friendship'],[22.7,2.4,'ДЕНСАУЛЫҚ','health']])corridorBoard(u,9.635,w,title,theme,Math.PI);
-  for(const [u,w,title,theme] of [[10.7,2.5,'ДЕНСАУЛЫҚ','health'],[18.6,3.8,'ДОСБОЛ LIKE','friendship'],[22,1.7,'ҚАУІПСІЗДІК','friendship']])corridorBoard(u,12.065,w,title,theme,0);
+  for(const [u,w,title,theme] of [[5.5,3.4,'БЕЗОПАСНАЯ СРЕДА','friendship'],[13.4,3.6,'БУДЬ ДРУГОМ','friendship'],[18.1,3.8,'ЧЕСТНЫЙ ГРАЖДАНИН','friendship'],[22.7,2.4,'ЗДОРОВЬЕ','health']])corridorBoard(u,9.635,w,title,theme,Math.PI);
+  for(const [u,w,title,theme] of [[10.7,2.5,'ЗДОРОВЬЕ','health'],[18.6,3.8,'БУДЬ ДРУГОМ','friendship'],[22,1.7,'БЕЗОПАСНОСТЬ','friendship']])corridorBoard(u,12.065,w,title,theme,0);
 
   // На снимках кабинеты со сплошным стеклом в одной створке; у 101 — боковая вставка.
   const extensionFrost=material(0x8f9a92,null,{shininess:45});
@@ -1058,7 +1058,7 @@ function buildCollegeEntranceInterior(){
    }
    panel(0,2.78,-.057,1.71,.67,outside,Math.PI);
    box(-.022,2.43,-.085,.022,3.12,-.04,p.frame);
-   label('ШЫҒУ · ВЫХОД',0,3.24,-.09,.78,.18,'#4c8398','#ffffff',Math.PI);
+   label('ВЫХОД',0,3.24,-.09,.78,.18,'#4c8398','#ffffff',Math.PI);
    add(rodGeo,p.red,-1.02,1.16,-.1,.095,.52,.095);
    rod([-1.02,1.42,-.1],[-.94,1.52,-.1],.016,p.iron);
    label('←',-1.02,1.63,-.13,.2,.18,'#4f805b','#fff',Math.PI);
@@ -1244,7 +1244,7 @@ function buildCollegeEntranceInterior(){
     for(const x of [-.88,0,.88])box(x-.03,0,-.065,x+.03,3.15,.035,p.frame);
     for(const side of [-1,1])for(const [a,b] of [[.18,.8],[.93,2.2]])box(side*.44-.34,a,-.07,side*.44+.34,b,-.055,p.oak);
     panel(0,2.75,-.054,1.71,.7,outside,Math.PI);box(-.91,3.1,-.065,.91,3.16,.035,p.frame);
-    label('ШЫҒУ · ВЫХОД',0,3.24,-.075,.75,.17,'#4c8398','#fff',Math.PI);
+    label('ВЫХОД',0,3.24,-.075,.75,.17,'#4c8398','#fff',Math.PI);
     add(rodGeo,p.red,-1.04,1.24,-.08,.084,.48,.084);
    });upperMark('upperRightEndDoor',30.68,10.85,.16,1.82,{closed:true});
    upperMark('upperRightCorridor',15.45,10.85,30.5,2.5,{classrooms:8,openDoors:0});
@@ -1378,7 +1378,7 @@ function buildCollegeEntranceInterior(){
    // Открытый проход в общий лестничный холл, соединённый с первым этажом.
    for(const u of [-30.05,-28.55])box(u-.035,0,-1.68,u+.035,2.72,-1.43,p.oak);
    box(-30.085,2.67,-1.68,-28.515,2.74,-1.43,p.oak);
-   label('ШЫҒУ · ВЫХОД',-29.3,2.9,-1.65,.72,.17,'#4c8398','#fff',Math.PI);
+   label('ВЫХОД',-29.3,2.9,-1.65,.72,.17,'#4c8398','#fff',Math.PI);
    upperMark('upperLeftFarStairPassage',-29.3,-1.6,1.5,.2,{open:true,stairInteriorDeferred:false});
    upperMark('upperLeftCorridor',-14.2,-2.85,33,2.5,{classrooms:10,closedDoors:10,crossBeams:2});
   }finally{pose=upperSavedPose}
@@ -1396,7 +1396,7 @@ function buildCollegeEntranceInterior(){
   box(-1.95,2.7,3,-1.8,3.6,4.6,p.oak,true);
   for(const v of [3,4.6])box(-1.98,0,v-.025,-1.77,2.73,v+.025,p.frame);
   box(-1.98,2.67,2.975,-1.77,2.74,4.625,p.frame);
-  at(-1.77,3.8,-Math.PI/2,()=>label('ШЫҒУ · ВЫХОД',0,2.94,-.02,.7,.17,'#4c8398','#fff',Math.PI));
+  at(-1.77,3.8,-Math.PI/2,()=>label('ВЫХОД',0,2.94,-.02,.7,.17,'#4c8398','#fff',Math.PI));
   box(-1.8,3.3,1.6,-.15,3.43,4.85,p.ceiling);
   for(let v=1.8;v<4.85;v+=.65)box(-.158,.08,v-.003,-.15,3.3,v+.003,p.seam);
   box(-.175,0,1.6,-.15,.09,4.85,p.trim);
@@ -1537,7 +1537,7 @@ function buildCollegeEntranceInterior(){
    for(const x of [-.4,.34])box(x,.12,-.078,x+.06,2.3,-.068,p.frame);
    box(-.4,2.24,-.078,.4,2.3,-.068,p.frame);
    rod([.31,1.05,-.105],[.31,1.26,-.105],.014,p.iron);
-   label('ШЫҒУ · ВЫХОД',0,2.7,-.075,.77,.18,'#4c8398','#fff',Math.PI);
+   label('ВЫХОД',0,2.7,-.075,.77,.18,'#4c8398','#fff',Math.PI);
    box(-.5,2.62,-.1,-.42,2.79,-.04,p.red);
   });
   // Верхние окна вдоль возвратного марша, без площадки перед ними.
@@ -1649,7 +1649,7 @@ function buildCollegeEntranceInterior(){
   }
   box(-1.835,2.68,9.58,.035,2.76,9.96,p.cream);
   box(-1.81,2.7,9.972,.01,2.72,9.98,p.iron);
-  label('ШЫҒУ · ВЫХОД',-.9,2.98,9.825,.71,.17,'#4c8398','#fff',0);
+  label('ВЫХОД',-.9,2.98,9.825,.71,.17,'#4c8398','#fff',0);
   box(-.355,0,8.89,-.085,.43,9.19,guardWhite,true);
   box(-.36,.405,8.885,-.08,.445,9.195,p.black);
   box(-.37,.445,8.875,-.07,.49,9.205,p.trim);
@@ -1778,7 +1778,7 @@ function buildCollegeEntranceInterior(){
    for(const x of [-.69,.69])box(x-.02,1.1,-.05,x+.02,2.42,-.015,p.steel);
    for(const y of [1.12,2.4])box(-.71,y-.02,-.05,.71,y+.02,-.015,p.steel);
   });finalMark('finalGroundOfficeWindow',-8.1,12.25,1.44,.08,{between:['116','118']});
-  // Стенды «КОЛЛЕДЖ МАҚТАНЫШЫ»: золотой орнамент, портреты и нижние карманы.
+  // Стенды «ГОРДОСТЬ КОЛЛЕДЖА»: золотой орнамент, портреты и нижние карманы.
   function prideBoard(u,width,title,group){
    const map=texture(1536,768,(g,w,h)=>{
     g.fillStyle='#f4f1e8';g.fillRect(0,0,w,h);
@@ -1790,7 +1790,7 @@ function buildCollegeEntranceInterior(){
     g.fillStyle='#9b874d';g.textAlign='center';g.font='bold 52px Georgia';g.fillText(title,w/2,68,w-110);
     g.fillStyle='#dad0df';g.fillRect(52,97,w-104,h-143);
     g.fillStyle='#9a7a9d';g.fillRect(52,97,w-104,42);g.fillStyle='#f7f1e8';g.font='bold 25px Arial';
-    g.fillText(group===1?'БІЛІМДІ ҰРПАҚ – ЕЛ БОЛАШАҒЫ':group===2?'БҮГІНГІ ІЗДЕНІС – ЕРТЕҢГІ ЖЕҢІС':'ҮЗДІК СТУДЕНТТЕР',w/2,127,w-150);
+    g.fillText(group===1?'ОБРАЗОВАННОЕ ПОКОЛЕНИЕ — БУДУЩЕЕ СТРАНЫ':group===2?'СЕГОДНЯШНИЕ СТАРАНИЯ — ЗАВТРАШНИЕ ПОБЕДЫ':'ЛУЧШИЕ СТУДЕНТЫ',w/2,127,w-150);
     const cols=width>3.8?8:6,cw=(w-154)/cols;
     for(let row=0;row<2;row++)for(let col=0;col<cols;col++){
      const x=77+col*cw,y=158+row*157,iw=cw-18,ih=139;
@@ -1815,9 +1815,9 @@ function buildCollegeEntranceInterior(){
     panel(0,2.06,-.031,width-.045,1.715,new THREE.MeshBasicMaterial({map}),Math.PI);
    });finalMark('finalGroundPrideBoard',u,12.23,width,.09,{title,portraits:true,goldOrnament:true});
   }
-  prideBoard(-14.85,3.65,'КОЛЛЕДЖ МАҚТАНЫШЫ',1);
-  prideBoard(-19.18,4.6,'КОЛЛЕДЖ МАҚТАНЫШЫ',2);
-  prideBoard(-22.88,2.5,'КОЛЛЕДЖ МАҚТАНЫШЫ',3);
+  prideBoard(-14.85,3.65,'ГОРДОСТЬ КОЛЛЕДЖА',1);
+  prideBoard(-19.18,4.6,'ГОРДОСТЬ КОЛЛЕДЖА',2);
+  prideBoard(-22.88,2.5,'ГОРДОСТЬ КОЛЛЕДЖА',3);
   // Дальняя дверь закрыта; над глухими створками — светлая фрамуга с осенними деревьями.
   const finalAutumnMap=texture(512,320,(g,w,h)=>{
    g.fillStyle='#e7e9dc';g.fillRect(0,0,w,h);
@@ -1849,7 +1849,7 @@ function buildCollegeEntranceInterior(){
    for(const x of [-.85,0,.85])box(x-.025,.12,-.085,x+.025,3.14,-.04,p.white);
    panel(0,2.775,-.05,1.65,.69,new THREE.MeshBasicMaterial({map:finalAutumnMap}),Math.PI);
    for(const y of [2.4,3.13])box(-.875,y-.026,-.085,.875,y+.026,-.04,p.white);
-   label('ШЫҒУ · ВЫХОД',0,3.24,-.08,.73,.16,'#4c8398','#fff',Math.PI);
+   label('ВЫХОД',0,3.24,-.08,.73,.16,'#4c8398','#fff',Math.PI);
    box(-.61,3.15,-.095,-.53,3.31,-.055,p.red);
    add(rodGeo,p.red,1.04,1.45,-.16,.085,.47,.085);
    rod([1.04,1.68,-.16],[1.13,1.79,-.16],.013,p.iron);
@@ -1948,7 +1948,7 @@ function buildCollegeEntranceInterior(){
    // Деревянный откос входа совпадает с торцом гранитной площадки.
    for(const u of [-1.45,.15])box(u-.035,0,9.58,u+.035,2.73,9.96,p.oak);
    box(-1.485,2.67,9.58,.185,2.75,9.96,p.oak);
-   label('ШЫҒУ · ВЫХОД',-.65,2.95,9.825,.74,.17,'#4c8398','#fff',0);
+   label('ВЫХОД',-.65,2.95,9.825,.74,.17,'#4c8398','#fff',0);
    // Оконный торец: короткая рулонная штора, белые трубы, батарея и урна.
    panel(.732,1.9,11.05,2.06,2.16,outside,-Math.PI/2);
    for(const v of [10,11.05,12.1])box(.68,.79,v-.024,.745,3.02,v+.024,p.frame);
@@ -2035,7 +2035,7 @@ function buildCollegeEntranceInterior(){
     panel(0,2.74,-.05,1.61,.7,outside,Math.PI);
     box(-.83,2.35,-.08,.83,2.4,-.04,p.trim);
     box(-.83,3.08,-.08,.83,3.14,-.04,p.trim);
-    label('ШЫҒУ · ВЫХОД',0,3.23,-.08,.73,.16,'#4c8398','#fff',Math.PI);
+    label('ВЫХОД',0,3.23,-.08,.73,.16,'#4c8398','#fff',Math.PI);
    });afterMark('afterStairEndDoor',-29.97,11.05,.15,1.66,{closed:true,white:true,leaves:2,transom:true,interactive:false});
    for(const u of [-.4,-3.8,-7.2,-10.6,-14,-17.4,-20.8,-24.2,-27.6]){
     box(u-.295,3.276,10.755,u+.295,3.3,11.345,p.bulb);
